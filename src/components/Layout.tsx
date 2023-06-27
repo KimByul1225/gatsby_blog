@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from "gatsby";
+import Haeder from './Haeder';
+import Footer from './Footer';
 
 
 interface ILayoutProps{
@@ -8,26 +9,18 @@ interface ILayoutProps{
 }
 
 /**
- * @description layout components nav와 footer를 포함하고 있음
+ * @description layout components header와 footer를 포함하고 있음
  */
 
 function Layout({children, title}: ILayoutProps) {
     return (
         <div className="container">
-            <nav>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/blog">Blog</Link></li>
-                </ul>
-            </nav>
-            
+            <Haeder/>
             <main>
                 <h1>{title}</h1>
                 {children}
             </main>
-            <footer>
-                footer
-            </footer>
+            <Footer/>
         </div>
     );
 }
