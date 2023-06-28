@@ -26,6 +26,13 @@ const config: GatsbyConfig = {
         path: `${__dirname}/stack`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `project`,
+        path: `${__dirname}/project`,
+      },
+    },
   ]
 };
 
