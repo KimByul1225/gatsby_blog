@@ -10,6 +10,7 @@ function Haeder() {
                 <li><Link to="/project">Project</Link></li>
                 <li><Link to="/blog">Blog</Link></li>
             </ul>
+            <hr />
         </nav>
     )
 }

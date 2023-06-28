@@ -20,6 +20,7 @@ function Layout({children, title}: ILayoutProps) {
                 <h1>{title}</h1>
                 {children}
             </main>
+            <hr />
             <Footer/>
         </div>
     );

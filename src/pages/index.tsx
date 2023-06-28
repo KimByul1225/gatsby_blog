@@ -1,10 +1,9 @@
 import * as React from "react";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import { graphql, Link, PageProps } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 
 import Stack from "../../stack/index.mdx";
-
 import { MDXProvider} from "@mdx-js/react";
 
 // const MyH1 = (props: React.JSX.IntrinsicAttributes & React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement>) => <h1 style={{ color: `tomato` }} {...props} />
@@ -37,11 +36,8 @@ function WorkDetail({item}: {item: readonly (string | null)[] | null | undefined
 
 
 export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
-    console.log("!!!", data)
   return (
     <Layout title="메인페이지">
-      
-      
       <div>
           {
               data.allMdx?.nodes.map((item, index)=>(
@@ -56,7 +52,6 @@ export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
                   <span>{item.frontmatter?.endDate}</span> /
                   <span>{item.frontmatter?.period}</span>
                 </p>
-
                 <WorkDetail item={item.frontmatter?.work}/>
                 <hr />
               </div>
@@ -74,7 +69,7 @@ export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
 
 export const query = graphql`
     query Experience {
-        allMdx(filter: {frontmatter: {slug: {eq: "ex"}}}) {
+        allMdx(filter: {frontmatter: {slug: {eq: "experience"}}}) {
           nodes{
             frontmatter {
               companyName
