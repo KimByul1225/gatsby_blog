@@ -15,8 +15,15 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `pages`,
-        path: `${__dirname}/blog-posts`,
+        name: `experience`,
+        path: `${__dirname}/experience`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `stack`,
+        path: `${__dirname}/stack`,
       },
     },
   ]
