@@ -3,6 +3,20 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { graphql, Link, PageProps } from 'gatsby';
 
+import Stack from "../../stack/index.mdx";
+
+import { MDXProvider} from "@mdx-js/react";
+
+// const MyH1 = (props: React.JSX.IntrinsicAttributes & React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement>) => <h1 style={{ color: `tomato` }} {...props} />
+// const MyParagraph = (props: React.JSX.IntrinsicAttributes & React.ClassAttributes<HTMLParagraphElement> & React.HTMLAttributes<HTMLParagraphElement>) => (
+//     <p style={{ fontSize: "18px", lineHeight: 1.6 }} {...props} />
+// )
+
+// const components = {
+//     h1: MyH1,
+//     p: MyParagraph,
+// }
+
 
 
 function WorkDetail({item}: {item: readonly (string | null)[] | null | undefined}) { 
@@ -21,8 +35,8 @@ function WorkDetail({item}: {item: readonly (string | null)[] | null | undefined
     )
 }
 
-export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
 
+export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
     console.log("!!!", data)
   return (
     <Layout title="메인페이지">
@@ -48,6 +62,11 @@ export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
               </div>
               ))
           }
+      </div>
+      <div>
+        <MDXProvider>
+          <Stack/>
+        </MDXProvider>
       </div>
     </Layout>
   )
