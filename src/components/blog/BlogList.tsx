@@ -1,21 +1,17 @@
 import React from 'react';
 
-interface IProjectList {
+interface IBlogList {
     frontmatter: { 
         id:  number | null | undefined; 
-        slug: string | null | undefined; 
-        title:  string | null | undefined; 
+        title: string | null | undefined; 
         description: string | null | undefined; 
         category: string | null | undefined; 
-        task: string | null | undefined; 
-        startDate: string | null | undefined; 
-        endDate: string | null | undefined; 
+        date: string | null | undefined; 
+        detailText: string | null | undefined; 
     }
 }
 
-function ProjectList({data}: {data: IProjectList[]}) {
-
-
+function BlogList({data}: {data: IBlogList[]}) {
     return (
         <div>
             <h1>
@@ -24,12 +20,12 @@ function ProjectList({data}: {data: IProjectList[]}) {
                 }
             </h1>
             {
-                data.reverse().map((item, index) => {
+                data.map((item, index) => {
                     return(
                         <div key={index}>
+                            <h2>{item.frontmatter?.category}</h2>
                             <h2>{item.frontmatter?.title}</h2>
                             <h2>{item.frontmatter?.description}</h2>
-                            <h2>{item.frontmatter?.category}</h2>
                             <hr />
                         </div>
                     )
@@ -39,4 +35,4 @@ function ProjectList({data}: {data: IProjectList[]}) {
     );
 }
 
-export default ProjectList;
+export default BlogList;

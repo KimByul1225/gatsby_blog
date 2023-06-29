@@ -33,6 +33,13 @@ const config: GatsbyConfig = {
         path: `${__dirname}/project`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog`,
+        path: `${__dirname}/blog`,
+      },
+    },
   ]
 };
 

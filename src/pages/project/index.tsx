@@ -9,11 +9,10 @@ import ProjectList from '../../components/project/ProjectList';
 
 export default function project({data}: PageProps<Queries.ProjectQuery>) {
     const {nodes} = data.allMdx;
-
     const [keyword, setKeyword] = useState("");
 
-    console.log("ck", nodes);
-    console.log("검색어", keyword.toLowerCase());
+    // console.log("ck", nodes);
+    // console.log("검색어", keyword.toLowerCase());
 
 
 
