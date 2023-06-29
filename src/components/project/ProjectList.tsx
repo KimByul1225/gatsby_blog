@@ -24,9 +24,10 @@ function ProjectList({data}: {data: IProjectList[]}) {
                 }
             </h1>
             {
-                data.reverse().map((item, index) => {
+                data.map((item, index) => {
                     return(
                         <div key={index}>
+                            <p>id : {item.frontmatter?.id}</p>
                             <h2>{item.frontmatter?.title}</h2>
                             <h2>{item.frontmatter?.description}</h2>
                             <h2>{item.frontmatter?.category}</h2>

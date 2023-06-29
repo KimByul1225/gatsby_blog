@@ -9,48 +9,37 @@ import ProjectList from '../../components/project/ProjectList';
 
 export default function project({data}: PageProps<Queries.ProjectQuery>) {
     const {nodes} = data.allMdx;
-    const [keyword, setKeyword] = useState("");
+    const [listSort, setListSort] = useState("desc");
 
-    // console.log("ck", nodes);
-    // console.log("검색어", keyword.toLowerCase());
-
-
-
-    // 방법1
-    // const filtering = (el: any) => {
-    //     return el.filter((item: { frontmatter: { title: string; description: string; category: string; }; }) => item.frontmatter?.title?.toLowerCase().includes(keyword.toLowerCase()) || item.frontmatter?.description?.toLowerCase().includes(keyword.toLowerCase()) || item.frontmatter?.category?.toLowerCase().includes(keyword.toLowerCase()) )
-    // }
-
-    // 방법2
-    const keys = ["title", "description", "category"];
-    const filtering = (el: any) => {
-        return el.filter((item: { frontmatter: any }) => keys.some(key => item.frontmatter[key].toLowerCase().includes(keyword.toLowerCase()))
-        );
+    const sorting = (el: any) => {
+        if(listSort === "desc"){
+            return el;
+        }else{
+            return el.slice(0).reverse();
+        }
     }
-
-    console.log("방법2", filtering(nodes));
-
     
     return (
         <Layout title="Project">
             <div>
-                <input
-                    type="search"
-                    aria-label="Search"
-                    placeholder="Filter blog posts by title or tag"
-                    onChange={(e) => setKeyword(e.target.value)}
-                />
-                /
-                <span> 총 {filtering(nodes).length} 건</span>
+                <select
+                    onChange={(e) => setListSort(e.target.value)}
+                >
+                    <option value="desc">올림차순</option>
+                    <option value="asb">내림차순</option>
+                </select>
+            </div>
+            <div>
+                <span> 총 {sorting(nodes).length} 건</span>
             </div>
             <hr />
             <ProjectList
-                data={filtering(nodes)}
+                data={sorting(nodes)}
             />
             <hr />
             <hr />
             <div>
-                {
+                {/* {
                     nodes.map((item, index)=>(
                         <div key={index}>
                             <hr />
@@ -64,11 +53,11 @@ export default function project({data}: PageProps<Queries.ProjectQuery>) {
                                 <span>{item.frontmatter?.startDate}</span> ~ 
                                 <span>{item.frontmatter?.endDate}</span>
                             </p>
-                            {/* <WorkDetail item={item.frontmatter?.work}/> */}
+                            <WorkDetail item={item.frontmatter?.work}/>
                             <hr />
                         </div>
                     ))
-                }
+                } */}
             </div>
         
         </Layout>

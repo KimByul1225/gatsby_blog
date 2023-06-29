@@ -9,17 +9,34 @@ import BlogList from '../../components/blog/BlogList';
 export default function blog({data}: PageProps<Queries.BlogQuery>) {
     const {nodes} = data.allMdx;
     const [keyword, setKeyword] = useState("");
+    const [listSort, setListSort] = useState("desc");
 
+
+    // 방법1
+    // const filtering = (el: any) => {
+    //     return el.filter((item: { frontmatter: { title: string; description: string; category: string; }; }) => item.frontmatter?.title?.toLowerCase().includes(keyword.toLowerCase()) || item.frontmatter?.description?.toLowerCase().includes(keyword.toLowerCase()) || item.frontmatter?.category?.toLowerCase().includes(keyword.toLowerCase()) )
+    // }
+
+    // 방법2
     const keys = ["title", "description", "category"];
     const filtering = (el: any) => {
-        return el.filter((item: { frontmatter: any }) => keys.some(key => item.frontmatter[key].toLowerCase().includes(keyword.toLowerCase()))
-        );
+        if(listSort === "desc"){
+            return el.filter((item: { frontmatter: any }) => keys.some(key => item.frontmatter[key].toLowerCase().includes(keyword.toLowerCase())));
+        }else{
+            return el.filter((item: { frontmatter: any }) => keys.some(key => item.frontmatter[key].toLowerCase().includes(keyword.toLowerCase()))).reverse();
+        }
     }
-
-    console.log("blog", data.allMdx);
-
+    
     return (
         <Layout title="Blog">
+            <div>
+                <select
+                    onChange={(e) => setListSort(e.target.value)}
+                >
+                    <option value="desc">올림차순</option>
+                    <option value="asb">내림차순</option>
+                </select>
+            </div>
             <div>
                 <input
                     type="search"
@@ -39,7 +56,7 @@ export default function blog({data}: PageProps<Queries.BlogQuery>) {
 
 export const query = graphql`
     query Blog {
-        allMdx(filter: {frontmatter: {slug: {eq: "blog"}}} sort: {frontmatter: {date: DESC}}) {
+        allMdx(filter: {frontmatter: {slug: {eq: "blog"}}} sort: {frontmatter: {id: DESC}}) {
             nodes{
                 frontmatter {
                     id

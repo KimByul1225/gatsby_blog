@@ -23,6 +23,7 @@ function BlogList({data}: {data: IBlogList[]}) {
                 data.map((item, index) => {
                     return(
                         <div key={index}>
+                            <p>id: {item.frontmatter?.id}</p>
                             <h2>{item.frontmatter?.category}</h2>
                             <h2>{item.frontmatter?.title}</h2>
                             <h2>{item.frontmatter?.description}</h2>
