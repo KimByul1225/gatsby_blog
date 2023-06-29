@@ -11,7 +11,7 @@ interface IBlogList {
     }
 }
 
-function BlogList({data}: {data: IBlogList[]}) {
+function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offset: number}) {
     return (
         <div>
             <h1>
@@ -20,13 +20,13 @@ function BlogList({data}: {data: IBlogList[]}) {
                 }
             </h1>
             {
-                data.map((item, index) => {
+                data.slice(offset, offset + limit).map((item, index) => {
                     return(
                         <div key={index}>
                             <p>id: {item.frontmatter?.id}</p>
                             <h2>{item.frontmatter?.category}</h2>
                             <h2>{item.frontmatter?.title}</h2>
-                            <h2>{item.frontmatter?.description}</h2>
+                            <p>{item.frontmatter?.description}</p>
                             <hr />
                         </div>
                     )

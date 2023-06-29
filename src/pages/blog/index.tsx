@@ -3,6 +3,7 @@ import Layout from '../../components/Layout';
 import Seo from '../../components/Seo';
 import { graphql, PageProps } from 'gatsby';
 import BlogList from '../../components/blog/BlogList';
+import Pagination from '../../components/blog/Pagination';
 
 
 
@@ -10,6 +11,10 @@ export default function blog({data}: PageProps<Queries.BlogQuery>) {
     const {nodes} = data.allMdx;
     const [keyword, setKeyword] = useState("");
     const [listSort, setListSort] = useState("desc");
+
+    const limit = 10;
+    const [page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
 
 
     // 방법1
@@ -49,6 +54,15 @@ export default function blog({data}: PageProps<Queries.BlogQuery>) {
             </div>
             <BlogList 
                 data={filtering(nodes)}
+                limit={limit}
+                offset={offset}
+            />
+            <Pagination
+                total={filtering(nodes).length}
+                limit={limit}
+                page={page}
+                offset={offset}
+                setPage={setPage}
             />
         </Layout>
     );

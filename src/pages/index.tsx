@@ -2,9 +2,9 @@ import * as React from "react";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { graphql, PageProps } from 'gatsby';
-
 import Stack from "../../stack/index.mdx";
 import { MDXProvider} from "@mdx-js/react";
+
 
 // const MyH1 = (props: React.JSX.IntrinsicAttributes & React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement>) => <h1 style={{ color: `tomato` }} {...props} />
 // const MyParagraph = (props: React.JSX.IntrinsicAttributes & React.ClassAttributes<HTMLParagraphElement> & React.HTMLAttributes<HTMLParagraphElement>) => (
