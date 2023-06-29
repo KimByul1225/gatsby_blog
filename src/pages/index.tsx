@@ -6,6 +6,10 @@ import Stack from "../../stack/index.mdx";
 import { MDXProvider} from "@mdx-js/react";
 
 
+
+import {  StaticImage } from "gatsby-plugin-image";
+
+
 // const MyH1 = (props: React.JSX.IntrinsicAttributes & React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement>) => <h1 style={{ color: `tomato` }} {...props} />
 // const MyParagraph = (props: React.JSX.IntrinsicAttributes & React.ClassAttributes<HTMLParagraphElement> & React.HTMLAttributes<HTMLParagraphElement>) => (
 //     <p style={{ fontSize: "18px", lineHeight: 1.6 }} {...props} />
@@ -21,6 +25,8 @@ import { MDXProvider} from "@mdx-js/react";
 function WorkDetail({item}: {item: readonly (string | null)[] | null | undefined}) { 
     return(
         <div>
+          
+
           {
               item && item.map((el, index) => {
                   return(

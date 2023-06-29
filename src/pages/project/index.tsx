@@ -7,9 +7,13 @@ import ProjectList from '../../components/project/ProjectList';
 
 
 
+
+
 export default function project({data}: PageProps<Queries.ProjectQuery>) {
     const {nodes} = data.allMdx;
     const [listSort, setListSort] = useState("desc");
+    console.log("nodes", nodes)
+
 
     const sorting = (el: any) => {
         if(listSort === "desc"){
@@ -80,6 +84,7 @@ export const query = graphql`
                     endDate
                     tag
                     detail
+                    headerImage 
                 }
             }
         }
