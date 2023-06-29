@@ -84,7 +84,11 @@ export const query = graphql`
                     endDate
                     tag
                     detail
-                    headerImage 
+                    headerImage {
+                        childImageSharp {
+                            gatsbyImageData(height: 450, placeholder: BLURRED)
+                        }
+                    }
                 }
             }
         }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { GatsbyImage, ImageDataLike, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 interface IProjectList {
     frontmatter: { 
@@ -11,7 +11,7 @@ interface IProjectList {
         task: string | null | undefined; 
         startDate: string | null | undefined; 
         endDate: string | null | undefined; 
-        headerImage: ImageDataLike | null;
+        headerImage:  { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null }
     }
 }
 
@@ -29,8 +29,8 @@ function ProjectList({data}: {data: IProjectList[]}) {
             </h1>
             {
                 data.map((item, index) => {
-                    const image = getImage(item.frontmatter.headerImage);
-                    console.log("item", item.frontmatter.headerImage);
+                    const image = getImage(item?.frontmatter?.headerImage?.childImageSharp?.gatsbyImageData!);
+
                     return(
                         <div key={index}>
                             <GatsbyImage 

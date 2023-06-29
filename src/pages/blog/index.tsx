@@ -8,13 +8,15 @@ import Pagination from '../../components/blog/Pagination';
 
 
 export default function blog({data}: PageProps<Queries.BlogQuery>) {
-    const {nodes} = data.allMdx;
+    const {nodes} = data.allContentfulGatsbyBlog;
     const [keyword, setKeyword] = useState("");
     const [listSort, setListSort] = useState("desc");
 
     const limit = 10;
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
+
+    console.log("nodes", nodes);
 
 
     // 방법1
@@ -26,9 +28,9 @@ export default function blog({data}: PageProps<Queries.BlogQuery>) {
     const keys = ["title", "description", "category"];
     const filtering = (el: any) => {
         if(listSort === "desc"){
-            return el.filter((item: { frontmatter: any }) => keys.some(key => item.frontmatter[key].toLowerCase().includes(keyword.toLowerCase())));
+            return el.filter((item: any) => keys.some(key => item[key].toLowerCase().includes(keyword.toLowerCase())));
         }else{
-            return el.filter((item: { frontmatter: any }) => keys.some(key => item.frontmatter[key].toLowerCase().includes(keyword.toLowerCase()))).reverse();
+            return el.filter((item: any) => keys.some(key => item[key].toLowerCase().includes(keyword.toLowerCase()))).reverse();
         }
     }
     
@@ -68,23 +70,47 @@ export default function blog({data}: PageProps<Queries.BlogQuery>) {
     );
 }
 
+// export const query = graphql`
+//     query Blog {
+//         allMdx(filter: {frontmatter: {slug: {eq: "blog"}}} sort: {frontmatter: {id: DESC}}) {
+//             nodes{
+//                 frontmatter {
+//                     id
+//                     title
+//                     description
+//                     category
+//                     date
+//                     tag
+//                     detailText
+//                 }
+//                 excerpt
+//             }
+//         }
+//     }
+// `
+
 export const query = graphql`
     query Blog {
-        allMdx(filter: {frontmatter: {slug: {eq: "blog"}}} sort: {frontmatter: {id: DESC}}) {
-            nodes{
-                frontmatter {
-                    id
-                    title
-                    description
-                    category
-                    date
-                    tag
-                    detailText
+        allContentfulGatsbyBlog (sort: {date: DESC}) {
+            nodes {
+                id
+                title
+                date
+                category
+                description
+                detail {
+                    raw
                 }
-                excerpt
+                headerImage {
+                    gatsbyImageData(placeholder: BLURRED, height: 400)
+                    file {
+                        url
+                    }
+                }
             }
         }
     }
+
 `
 
 export const Head = ()=> <Seo title="Blog"/>
