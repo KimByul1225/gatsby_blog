@@ -2,6 +2,8 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { styled } from 'styled-components';
 
+import { Link } from "gatsby";
+
 interface IBlogList {
     id: string;
     title: string | null;
@@ -25,24 +27,25 @@ function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offs
             {
                 data.slice(offset, offset + limit).map((item, index) => {
                     const image = getImage(item?.headerImage?.gatsbyImageData!);
-                    const urlPath = `https:${item.headerImage?.file?.url}`
-                    
-                    console.log("getImg", urlPath);
-
+                    const urlPath = `https:${item.headerImage?.file?.url}`;
                     return(
                         <div key={index}>
-                            <Background
-                                img={urlPath}
-                            />
-                            <GatsbyImage
-                                image={image!}
-                                alt={item.title!}
-                            />
-                            <p>id: {item?.id}</p>
-                            <h2>{item?.category}</h2>
-                            <h2>{item?.title}</h2>
-                            <p>{item?.date}</p>
-                            <p>{item?.description}</p>
+                            <Link
+                                to={`/blog/${item.id}`}
+                            >   
+                                <Background
+                                    img={urlPath}
+                                />
+                                <GatsbyImage
+                                    image={image!}
+                                    alt={item.title!}
+                                />
+                                <p>id: {item?.id}</p>
+                                <h2>{item?.category}</h2>
+                                <h2>{item?.title}</h2>
+                                <p>{item?.date}</p>
+                                <p>{item?.description}</p>
+                            </Link>
                             <hr />
                         </div>
                     )

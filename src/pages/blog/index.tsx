@@ -7,7 +7,7 @@ import Pagination from '../../components/blog/Pagination';
 
 
 
-export default function blog({data}: PageProps<Queries.BlogQuery>) {
+export default function blog({data}: PageProps<Queries.BlogsQuery>) {
     const {nodes} = data.allContentfulGatsbyBlog;
     const [keyword, setKeyword] = useState("");
     const [listSort, setListSort] = useState("desc");
@@ -15,9 +15,7 @@ export default function blog({data}: PageProps<Queries.BlogQuery>) {
     const limit = 10;
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
-
     console.log("nodes", nodes);
-
 
     // 방법1
     // const filtering = (el: any) => {
@@ -90,7 +88,7 @@ export default function blog({data}: PageProps<Queries.BlogQuery>) {
 // `
 
 export const query = graphql`
-    query Blog {
+    query Blogs {
         allContentfulGatsbyBlog (sort: {date: DESC}) {
             nodes {
                 id

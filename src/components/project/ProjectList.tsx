@@ -16,10 +16,6 @@ interface IProjectList {
 }
 
 function ProjectList({data}: {data: IProjectList[]}) {
-
-    console.log("projcetImage", data);
-
-
     return (
         <div>
             <h1>
