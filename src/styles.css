@@ -234,10 +234,6 @@ body {
     -webkit-box-orient: vertical
 }
 
-[aria-current]:not([aria-current="false"]) {
-    font-weight: bold;
-    color: red;
-}
 
 @media screen and (max-width:768px) {
     .mb_none {

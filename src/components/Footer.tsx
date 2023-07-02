@@ -52,6 +52,9 @@ const FooterWrap = styled.div`
     background-color: #000;
     color: #fff;
     padding: 50px  0;
+    @media screen and (max-width: 768px){
+        padding: 60px  0;
+    }
 `
 const SpaceBetween = styled.div`
     display: flex;
@@ -59,6 +62,13 @@ const SpaceBetween = styled.div`
     justify-content: space-between;
     p{
         font-size: 18px;
+    }
+    @media screen and (max-width: 768px){
+        flex-direction: column;
+        p{
+            font-size: 16px;
+            margin-bottom: 35px;;
+        }
     }
 `
 const IconWrap = styled.div`
