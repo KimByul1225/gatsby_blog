@@ -1,6 +1,7 @@
 import React from 'react';
 import Haeder from './Haeder';
 import Footer from './Footer';
+import { styled } from 'styled-components';
 
 
 interface ILayoutProps{
@@ -14,13 +15,12 @@ interface ILayoutProps{
 
 function Layout({children, title}: ILayoutProps) {
     return (
-        <div className="container">
+        <div>
             <Haeder/>
-            <main>
+            <Main>
                 <h1>{title}</h1>
                 {children}
-            </main>
-            <hr />
+            </Main>
             <Footer/>
         </div>
     );
@@ -28,3 +28,6 @@ function Layout({children, title}: ILayoutProps) {
 
 export default Layout;
 
+const Main = styled.main`
+    padding: 0 0 150px 0;
+`

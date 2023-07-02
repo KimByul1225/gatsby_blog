@@ -2,7 +2,10 @@ import * as React from "react";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { graphql, PageProps } from 'gatsby';
+
 import Stack from "../../stack/index.mdx";
+import NowStudying from "../../stack/nowStudying.mdx";
+
 import { MDXProvider} from "@mdx-js/react";
 
 import { styled } from "styled-components";
@@ -44,11 +47,14 @@ function WorkDetail({item}: {item: readonly (string | null)[] | null | undefined
 
 export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
   return (
-    <Layout title="메인페이지">
+    <Layout title="Home">
       <Row>
         <StaticImage src="https://images.unsplash.com/photo-1625768376503-68d2495d78c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80" alt="Stickers"/>
 
-        <div>
+        <SectionTitle>
+          Experience 🧑🏻‍💻
+        </SectionTitle>
+        <ExperienceWrap>
           {
             data.allMdx?.nodes.map((item, index)=>(
             <ExperienceList key={index}>
@@ -66,30 +72,22 @@ export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
             </ExperienceList>
             ))
           }
-        </div>
-        
-
-        <MDXProvider>
+        </ExperienceWrap>
+                
+        <SectionTitle>
+          Stacks 💻
+        </SectionTitle>
+        <MdxWrap as="div">
           <Stack/>
-        </MDXProvider>
-      </Row>
-      
-      
+        </MdxWrap>
         
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>
-          
-      </div>
-      <div>
-        
-      </div>
+        <SectionTitle>
+          Now Studying ✍🏻
+        </SectionTitle>
+        <MdxWrap as="div">
+          <NowStudying/>
+        </MdxWrap>
+      </Row>      
     </Layout>
   )
 }
@@ -116,12 +114,28 @@ export const query = graphql`
 
 export const Head = ()=> <Seo title="Home"/>
 
-const ExperienceList = styled.div`
-  margin-top: 50px;
+const SectionTitle = styled.h2`
+  font-size: 32px;
+  font-weight: 700;
+  border-left: 5px solid #000;
+  padding-left: 20px;
+  margin-top: 80px;
+  margin-bottom: 20px;
+  line-height: 45px;
+`
 
+const ExperienceWrap = styled.div`
+  
+`
+
+const ExperienceList = styled.div`
+  padding: 30px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  &:first-child{
+    border-top: 1px solid #e4e4e4;
+  }
   border-bottom: 1px solid #e4e4e4;
   h3{
     width: 30%;
@@ -148,6 +162,7 @@ const ExperienceList = styled.div`
     }
   }
 `
+
 const ExperienceDetail = styled.div`
   width: 70%;
 `
@@ -162,3 +177,13 @@ const TagWrap = styled.div`
     border-radius: 20px;
   }
 `
+
+const MdxWrap = styled(MDXProvider)`
+  font-size: 32px;
+  padding-top: 20px;
+  img{
+    height: 34px;
+    width: auto;
+    border-radius: 20px;
+  }
+`;
