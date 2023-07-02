@@ -6,6 +6,7 @@ import { styled } from 'styled-components';
 import iconGitHub from "../images/common/icon_github.svg";
 import iconNotion from "../images/common/icon_notion.svg";
 import iconLinkedIn from "../images/common/icon_linkedin.svg";
+import iconMail from "../images/common/icon_mail.svg";
 
 
 function Footer() {
@@ -38,6 +39,14 @@ function Footer() {
                                 linked in 아이콘
                             </span>
                         </Link>
+                        <Link to="/">
+                            <span
+                                className="ir_so"
+                            >
+                                e-mail 아이콘
+                            </span>
+                        </Link>
+                        
                     </IconWrap>
                 </SpaceBetween>
                 
@@ -62,6 +71,7 @@ const SpaceBetween = styled.div`
     justify-content: space-between;
     p{
         font-size: 18px;
+        font-weight: 300;
     }
     @media screen and (max-width: 768px){
         flex-direction: column;
@@ -86,6 +96,11 @@ const IconWrap = styled.div`
     }
     a:nth-child(3){
         background: url(${iconLinkedIn}) center no-repeat;
+        background-size: contain;
+
+    }
+    a:last-child{
+        background: url(${iconMail}) center no-repeat;
         background-size: contain;
         margin-right: 0px;
     }
