@@ -1,5 +1,6 @@
 import React from 'react';
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { styled } from 'styled-components';
 
 interface IProjectList {
     frontmatter: { 
@@ -17,33 +18,49 @@ interface IProjectList {
 
 function ProjectList({data}: {data: IProjectList[]}) {
     return (
-        <div>
-            <h1>
-                {
-                    data.length
-                }
-            </h1>
+        <ProjectWrap>
             {
                 data.map((item, index) => {
                     const image = getImage(item?.frontmatter?.headerImage?.childImageSharp?.gatsbyImageData!);
 
                     return(
-                        <div key={index}>
+                        <List key={index}>
+                            <DeatailWrap>
+                                <h5>
+                                    {item.frontmatter?.category}
+                                </h5>
+                                <h3>
+                                    {item.frontmatter?.title}
+                                </h3>
+                                <h4>
+                                    {item.frontmatter?.description}
+                                </h4>
+                                <p>
+                                    {item.frontmatter?.startDate} ~ {item.frontmatter?.endDate}
+                                </p>
+                            </DeatailWrap>
                             <GatsbyImage 
                                 image={image as any}
                                 alt={item.frontmatter?.title!}
                             />
-                            <p>id : {item.frontmatter?.id}</p>
-                            <h2>{item.frontmatter?.title}</h2>
-                            <h2>{item.frontmatter?.description}</h2>
-                            <h2>{item.frontmatter?.category}</h2>
-                            <hr />
-                        </div>
+                        </List>
                     )
                 })
             }
-        </div>
+        </ProjectWrap>
     );
 }
 
 export default ProjectList;
+
+const ProjectWrap = styled.ul`
+    
+`
+const List = styled.li`
+    display: flex;
+    align-items: center;
+`
+
+const DeatailWrap = styled.div`
+    
+`

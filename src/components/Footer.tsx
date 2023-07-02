@@ -32,20 +32,23 @@ function Footer() {
                                 notion 아이콘
                             </span>
                         </Link>
-                        <Link to="/">
+                        <Link to="/" >
                             <span
                                 className="ir_so"
                             >
                                 linked in 아이콘
                             </span>
                         </Link>
-                        <Link to="/">
+                        <Link to="mailto:byulkim1225@gmail.com" 
+                            target="_blank"
+                        >
                             <span
                                 className="ir_so"
                             >
                                 e-mail 아이콘
                             </span>
                         </Link>
+                        {/* <a href="https://www.naver.com" target="_blank" rel="noopener noreferrer"><span className='ir_so'>Facebook</span></a> */}
                         
                     </IconWrap>
                 </SpaceBetween>
