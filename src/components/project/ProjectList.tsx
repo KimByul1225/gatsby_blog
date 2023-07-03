@@ -25,7 +25,7 @@ function ProjectDetail({item}: {item: (string | null)[]}) {
             {
                 item.length != 0 && item.map((el, index) => {
                     return(
-                        <li key={index}>
+                        <li key={index}  className="ellipsis">
                             {el}
                         </li>
                     )
@@ -47,10 +47,10 @@ function ProjectList({data}: {data: IProjectList[]}) {
                                 <h5>
                                     {item.frontmatter?.category}
                                 </h5>
-                                <h3>
+                                <h3 className="ellipsis">
                                     {item.frontmatter?.title}
                                 </h3>
-                                <h4>
+                                <h4 className="ellipsis">
                                     {item.frontmatter?.description}
                                 </h4>
                                 <p>

@@ -1,7 +1,6 @@
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { styled } from 'styled-components';
-
 import { Link } from "gatsby";
 
 interface IBlogList {
@@ -20,42 +19,105 @@ interface IBackground {
 
 function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offset: number}) {
     return (
-        <div>
-            <h1>
-                검색결과 총 {data.length} 건
-            </h1>
+        <ul>
             {
                 data.slice(offset, offset + limit).map((item, index) => {
                     const image = getImage(item?.headerImage?.gatsbyImageData!);
                     const urlPath = `https:${item.headerImage?.file?.url}`;
+                    
                     return(
-                        <div key={index}>
+                        <List key={index}>
                             <Link
                                 to={`/blog/${item.id}`}
                             >   
-                                <Background
-                                    img={urlPath}
-                                />
-                                <GatsbyImage
-                                    image={image!}
+                                <DeatailWrap>       
+                                    <h5>{item?.category}</h5>
+                                    <h3 className="ellipsis">{item?.title}</h3>
+                                    <h4 className="ellipsis">{item?.description}</h4>
+                                    <p>{item?.date}</p>
+                                </DeatailWrap>
+
+                                <StyledGatsbyImage 
+                                    image={image as any}
                                     alt={item.title!}
                                 />
-                                <p>id: {item?.id}</p>
-                                <h2>{item?.category}</h2>
-                                <h2>{item?.title}</h2>
-                                <p>{item?.date}</p>
-                                <p>{item?.description}</p>
                             </Link>
-                            <hr />
-                        </div>
+                            {/* <Background
+                                img={urlPath}
+                            /> */}
+                        </List>
                     )
                 })
             }
-        </div>
+        </ul>
     );
 }
 
 export default BlogList;
+
+
+const List = styled.li`
+    border-bottom: 1px solid #e4e4e4;
+    a{
+        padding: 30px 20px  30px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #000;
+    }
+    a:hover{
+        opacity: 0.7;
+        transition: all .3s ease;
+    }
+    
+    &:first-child{
+        border-top: 1px solid #e4e4e4;
+    }
+    @media screen and (max-width: 768px) {
+        a{
+            flex-direction: column-reverse
+        }
+        
+    }
+`
+
+
+const DeatailWrap = styled.div`
+    width: calc(100% - 200px);
+    h5{
+        color: #ff4d15;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+    h3{
+        margin-bottom: 10px;
+        font-size: 28px;
+        font-weight: 600;
+    }
+    h4{
+        margin-bottom: 20px;
+    }
+    p{
+        color: #818181;
+        font-weight: 300;
+    }
+    
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        margin-top: 30px;
+    }
+`
+
+const StyledGatsbyImage = styled(GatsbyImage)`
+    width: 200px;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+`
 
 const Background = styled.div<IBackground>`
     width: 150px;
@@ -64,3 +126,5 @@ const Background = styled.div<IBackground>`
     background: url(${(props) => props.img}) center no-repeat;
     background-size: cover;
 `
+
+

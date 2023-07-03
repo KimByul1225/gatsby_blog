@@ -51,7 +51,7 @@ export default function blog({data}: PageProps<Queries.BlogsQuery>) {
                         <input
                             type="search"
                             aria-label="Search"
-                            placeholder="Filter blog posts by title or tag"
+                            placeholder=""
                             onChange={(e) => setKeyword(e.target.value)}
                         />
                         <SelectBox>
@@ -68,66 +68,25 @@ export default function blog({data}: PageProps<Queries.BlogsQuery>) {
                     </div>
                     
                 </InputWrap>
-                <div> 총 {filtering(nodes).length} 건</div>
+                <TotalCount> 총 <span>{filtering(nodes).length}</span> 건</TotalCount>
 
+                <BlogList 
+                    data={filtering(nodes)}
+                    limit={limit}
+                    offset={offset}
+                    />
+                <Pagination
+                    total={filtering(nodes).length}
+                    limit={limit}
+                    page={page}
+                    offset={offset}
+                    setPage={setPage}
+                />
             </Row>
             
-            {/* <div>
-                <select
-                    onChange={(e) => setListSort(e.target.value)}
-                >
-                    <option value="desc">올림차순</option>
-                    <option value="asb">내림차순</option>
-                </select>
-            </div> */}
-
-
-
-
-            <div>
-                <input
-                    type="search"
-                    aria-label="Search"
-                    placeholder="Filter blog posts by title or tag"
-                    onChange={(e) => setKeyword(e.target.value)}
-                />
-                /
-                <span> 총 {filtering(nodes).length} 건</span>
-            </div>
-            <BlogList 
-                data={filtering(nodes)}
-                limit={limit}
-                offset={offset}
-            />
-            <Pagination
-                total={filtering(nodes).length}
-                limit={limit}
-                page={page}
-                offset={offset}
-                setPage={setPage}
-            />
         </Layout>
     );
 }
-
-// export const query = graphql`
-//     query Blog {
-//         allMdx(filter: {frontmatter: {slug: {eq: "blog"}}} sort: {frontmatter: {id: DESC}}) {
-//             nodes{
-//                 frontmatter {
-//                     id
-//                     title
-//                     description
-//                     category
-//                     date
-//                     tag
-//                     detailText
-//                 }
-//                 excerpt
-//             }
-//         }
-//     }
-// `
 
 export const query = graphql`
     query Blogs {
@@ -135,7 +94,7 @@ export const query = graphql`
             nodes {
                 id
                 title
-                date
+                date(formatString: "YYYY.MM.DD HH:mm")
                 category
                 description
                 detail {
@@ -161,7 +120,7 @@ const InputWrap = styled.div<IInputWrap>`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-bottom: 30px;
+    margin-bottom: 20px;
     select{
         -webkit-appearance: none;
         appearance: none;
@@ -179,12 +138,6 @@ const InputWrap = styled.div<IInputWrap>`
         color: #818181;
         margin-right: 20px;
     }
-    /* div:last-child{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    } */
-
     input{
         width: 450px;
         border: 1px solid #e0e0e0;
@@ -198,7 +151,6 @@ const InputWrap = styled.div<IInputWrap>`
             background-size: 20px;
         `}
     }
-
     @media screen and (max-width: 768px){
         display: block;
         p{
@@ -209,10 +161,18 @@ const InputWrap = styled.div<IInputWrap>`
         }
     }
 `
-
 const SelectBox = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
     margin-top: 10px;
+`
+
+const TotalCount = styled.p`
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    span{
+        color: #ff4d15;
+    }
 `
