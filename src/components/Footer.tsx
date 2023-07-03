@@ -39,15 +39,17 @@ function Footer() {
                                 linked in 아이콘
                             </span>
                         </Link>
-                        <Link to="mailto:byulkim1225@gmail.com" 
+                        <a 
+                            href="mailto:byulkim1225@gmail.com" 
                             target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <span
                                 className="ir_so"
                             >
                                 e-mail 아이콘
                             </span>
-                        </Link>
+                        </a>
                         {/* <a href="https://www.naver.com" target="_blank" rel="noopener noreferrer"><span className='ir_so'>Facebook</span></a> */}
                         
                     </IconWrap>

@@ -106,8 +106,7 @@ const DeatailWrap = styled.div`
 
 const StyledGatsbyImage = styled(GatsbyImage)`
     width: 200px;
-    max-height: 200px;
-    overflow: hidden;
+    height: 200px;
     border-radius: 10px;
     @media screen and (max-width: 768px) {
         width: 100%;

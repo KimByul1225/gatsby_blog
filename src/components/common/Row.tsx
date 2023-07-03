@@ -17,7 +17,8 @@ const Wrap = styled.div`
     margin: 0 auto;
     padding-top: 50px;
     @media screen and (max-width: 1200px){
-        max-width: 100%; padding: 0 20px;
+        max-width: 100%; 
+        padding: 50px 20px 0 20px;
     }
 `
 

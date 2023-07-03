@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link } from "gatsby";
 import styled, {keyframes} from 'styled-components';
-import Row from './common/Row';
+import logo from "../images/common/logo_symbol.png";
 
-import logo from "../images/common/logo_symbol.png"
 
 
 function Haeder() {
+    const isActive = (path: string) => {
+        const sliceLocation = location.pathname.substring(1);
+        const substringLocaton = sliceLocation.split("/");
+        const locationPath = substringLocaton[0];
+        return path === locationPath ? "active" : ""
+    }
+
     return (
         <HeaderWrap>
             <Row>
@@ -23,9 +29,9 @@ function Haeder() {
 
                     <Navi>
                         <ul>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/project">Project</Link></li>
-                            <li><Link to="/blog">Blog</Link></li>
+                            <li><Link to="/" className={isActive("")}>Home</Link></li>
+                            <li><Link to="/project" className={isActive("project")}>Project</Link></li>
+                            <li><Link to="/blog" className={isActive("blog")}>Blog</Link></li>
                         </ul>
                     </Navi>
                 </SpaceBetween>
@@ -44,6 +50,16 @@ const HeaderWrap = styled.header`
         padding: 20px 0;
     }
 `
+
+const Row = styled.div`
+    max-width: 1000px; 
+    margin: 0 auto;
+    @media screen and (max-width: 1200px){
+        max-width: 100%; 
+        padding: 0 20px;
+    }
+`
+
 const SpaceBetween = styled.div`
     display: flex;
     align-items: center;
@@ -97,6 +113,10 @@ const Navi = styled.nav`
         transition: all .3s ease;
     }
     [aria-current]:not([aria-current="false"]) {
+        font-weight: bold;
+        color: #ff4d15;
+    }
+    a.active{
         font-weight: bold;
         color: #ff4d15;
     }
