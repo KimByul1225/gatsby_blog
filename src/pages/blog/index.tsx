@@ -47,6 +47,14 @@ export default function blog({data}: PageProps<Queries.BlogsQuery>) {
                 <InputWrap
                     keyword = {keyword}
                 >   
+                    <SelectBox>
+                        <select
+                            onChange={(e) => setListSort(e.target.value)}
+                        >
+                            <option value="desc">오름차순</option>
+                            <option value="asb">내림차순</option>
+                        </select>
+                    </SelectBox>
                     <div>
                         <input
                             type="search"
@@ -54,22 +62,9 @@ export default function blog({data}: PageProps<Queries.BlogsQuery>) {
                             placeholder=""
                             onChange={(e) => setKeyword(e.target.value)}
                         />
-                        <SelectBox>
-                            <p>
-                            * 프로젝트 시작일을 기준으로 정렬 됩니다.
-                            </p>
-                            <select
-                                onChange={(e) => setListSort(e.target.value)}
-                            >
-                                <option value="desc">올림차순</option>
-                                <option value="asb">내림차순</option>
-                            </select>
-                        </SelectBox>
                     </div>
-                    
                 </InputWrap>
                 <TotalCount> 총 <span>{filtering(nodes).length}</span> 건</TotalCount>
-
                 <BlogList 
                     data={filtering(nodes)}
                     limit={limit}
@@ -121,6 +116,39 @@ const InputWrap = styled.div<IInputWrap>`
     align-items: center;
     justify-content: flex-end;
     margin-bottom: 20px;
+    p{
+        color: #818181;
+        margin-right: 20px;
+    }
+    input{
+        width: 300px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        color: #828282;
+        font-size: 16px;
+        height: 50px;
+        padding: 0 15px;
+        ${(props) => props.keyword === "" && css`
+            background: url(${iconSearch}) center right 15px no-repeat;
+            background-size: 20px;
+        `}
+    }
+    
+    @media screen and (max-width: 768px){
+        justify-content: center;
+        p{
+            font-size: 14px;
+        }
+        div{
+            width: calc(100% - 160px);
+        }
+        input{
+            width: 100%;
+        }
+    }
+`
+const SelectBox = styled.div`
+    margin-right: 20px; 
     select{
         -webkit-appearance: none;
         appearance: none;
@@ -134,38 +162,9 @@ const InputWrap = styled.div<IInputWrap>`
         background: #fff url(${iconSelect}) center right 15px no-repeat; 
         background-size: 18px;
     }
-    p{
-        color: #818181;
-        margin-right: 20px;
-    }
-    input{
-        width: 450px;
-        border: 1px solid #e0e0e0;
-        border-radius: 4px;
-        color: #828282;
-        font-size: 16px;
-        height: 50px;
-        padding: 0 15px;
-        ${(props) => props.keyword === "" && css`
-            background: url(${iconSearch}) center right 15px no-repeat;
-            background-size: 20px;
-        `}
-    }
     @media screen and (max-width: 768px){
-        display: block;
-        p{
-            font-size: 14px;
-        }
-        input{
-            width: 100%;
-        }
+        width: 160px !important;
     }
-`
-const SelectBox = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-top: 10px;
 `
 
 const TotalCount = styled.p`

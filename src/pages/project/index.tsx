@@ -33,7 +33,7 @@ export default function project({data}: PageProps<Queries.ProjectQuery>) {
                     <select
                         onChange={(e) => setListSort(e.target.value)}
                     >
-                        <option value="desc">올림차순</option>
+                        <option value="desc">오름차순</option>
                         <option value="asb">내림차순</option>
                     </select>
                 </InputWrap>

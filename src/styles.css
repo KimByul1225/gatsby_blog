@@ -1,21 +1,4 @@
 :root {
-    /* style | variant | weight | size/line-height | family */
-    --t1: 500 50px "Pretendard";
-    --t2: 500 34px "Pretendard";
-    --t3: 500 32px "Pretendard";
-    --t4: 500 30px "Pretendard";
-    --st1: 400 28px "Pretendard";
-    --st2: 400 26px "Pretendard";
-    --st3: 400 22px "Pretendard";
-    --st4: 400 20px "Pretendard";
-    --btn1: 400 24px "Pretendard";
-    --btn2: 400 20px "Pretendard";
-    --btn3: 400 14px "Pretendard";
-    --btn4: 400 12px "Pretendard";
-    --b1: 400 18px "Pretendard";
-    --b2: 400 16px "Pretendard";
-    --b3: 400 14px "Pretendard";
-    --b4: 400 12px "Pretendard";
     --col_acc: #FF4D15 !important;
 }
 

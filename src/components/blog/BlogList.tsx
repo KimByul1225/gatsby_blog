@@ -13,9 +13,7 @@ interface IBlogList {
     headerImage : { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData | null, readonly file: { readonly url: string | null } | null };
 }
 
-interface IBackground {
-    img: string;
-}
+
 
 function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offset: number}) {
     return (
@@ -23,7 +21,6 @@ function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offs
             {
                 data.slice(offset, offset + limit).map((item, index) => {
                     const image = getImage(item?.headerImage?.gatsbyImageData!);
-                    const urlPath = `https:${item.headerImage?.file?.url}`;
                     
                     return(
                         <List key={index}>
@@ -42,9 +39,7 @@ function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offs
                                     alt={item.title!}
                                 />
                             </Link>
-                            {/* <Background
-                                img={urlPath}
-                            /> */}
+                            
                         </List>
                     )
                 })
@@ -59,7 +54,7 @@ export default BlogList;
 const List = styled.li`
     border-bottom: 1px solid #e4e4e4;
     a{
-        padding: 30px 20px  30px 0;
+        padding: 30px 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -118,13 +113,4 @@ const StyledGatsbyImage = styled(GatsbyImage)`
         width: 100%;
     }
 `
-
-const Background = styled.div<IBackground>`
-    width: 150px;
-    height: 150px;
-    border: 1px solid #000;
-    background: url(${(props) => props.img}) center no-repeat;
-    background-size: cover;
-`
-
 

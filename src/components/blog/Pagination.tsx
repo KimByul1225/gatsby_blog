@@ -134,7 +134,6 @@ const NumberBox = styled.div`
     }
     button.on{
         background-color: #ff4d15;
-        background-color: var(--col_acc);
         border-radius: 4px;
         color: #fff;
     }

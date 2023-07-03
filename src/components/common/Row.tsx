@@ -13,7 +13,9 @@ export default Row;
 
 
 const Wrap = styled.div`
-    max-width: 1000px; margin: 0 auto;
+    max-width: 1000px; 
+    margin: 0 auto;
+    padding-top: 50px;
     @media screen and (max-width: 1200px){
         max-width: 100%; padding: 0 20px;
     }
