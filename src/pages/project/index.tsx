@@ -27,20 +27,15 @@ export default function project({data}: PageProps<Queries.ProjectQuery>) {
         <Layout title="Project">
             <Row>
                 <InputWrap>
-                    <SectionTitle>
-                        Project 🧑🏻‍💻
-                    </SectionTitle>
-                    <div>
-                        <p>
-                            * 프로젝트 시작일을 기준으로 정렬 됩니다.
-                        </p>
-                        <select
-                            onChange={(e) => setListSort(e.target.value)}
-                        >
-                            <option value="desc">올림차순</option>
-                            <option value="asb">내림차순</option>
-                        </select>
-                    </div>
+                    <p>
+                        * 프로젝트 시작일을 기준으로 정렬 됩니다.
+                    </p>
+                    <select
+                        onChange={(e) => setListSort(e.target.value)}
+                    >
+                        <option value="desc">올림차순</option>
+                        <option value="asb">내림차순</option>
+                    </select>
                 </InputWrap>
                 
 
@@ -84,19 +79,10 @@ export const query = graphql`
 export const Head = ()=> <Seo title="Project"/>
 
 
-const SectionTitle = styled.h2`
-    font-size: 32px;
-    font-weight: 700;
-    border-left: 5px solid #000;
-    padding-left: 20px;
-    line-height: 45px;
-`
-
-
 const InputWrap = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding-bottom: 30px;
     select{
         -webkit-appearance: none;
@@ -115,17 +101,8 @@ const InputWrap = styled.div`
         color: #818181;
         margin-right: 20px;
     }
-    div{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+
     @media screen and (max-width: 768px){
-        display: block;
-        div{
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
         p{
             font-size: 14px;
         }

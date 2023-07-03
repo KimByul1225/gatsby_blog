@@ -5,6 +5,15 @@ import { graphql, PageProps } from 'gatsby';
 import BlogList from '../../components/blog/BlogList';
 import Pagination from '../../components/blog/Pagination';
 
+import { styled, css } from 'styled-components';
+import iconSelect from "../../images/common/icon_select.png";
+import iconSearch from "../../images/common/icon_search.png";
+import Row from '../../components/common/Row';
+
+
+interface IInputWrap{
+    keyword: string;
+}
 
 
 export default function blog({data}: PageProps<Queries.BlogsQuery>) {
@@ -34,14 +43,47 @@ export default function blog({data}: PageProps<Queries.BlogsQuery>) {
     
     return (
         <Layout title="Blog">
-            <div>
+            <Row>
+                <InputWrap
+                    keyword = {keyword}
+                >   
+                    <div>
+                        <input
+                            type="search"
+                            aria-label="Search"
+                            placeholder="Filter blog posts by title or tag"
+                            onChange={(e) => setKeyword(e.target.value)}
+                        />
+                        <SelectBox>
+                            <p>
+                            * 프로젝트 시작일을 기준으로 정렬 됩니다.
+                            </p>
+                            <select
+                                onChange={(e) => setListSort(e.target.value)}
+                            >
+                                <option value="desc">올림차순</option>
+                                <option value="asb">내림차순</option>
+                            </select>
+                        </SelectBox>
+                    </div>
+                    
+                </InputWrap>
+                <div> 총 {filtering(nodes).length} 건</div>
+
+            </Row>
+            
+            {/* <div>
                 <select
                     onChange={(e) => setListSort(e.target.value)}
                 >
                     <option value="desc">올림차순</option>
                     <option value="asb">내림차순</option>
                 </select>
-            </div>
+            </div> */}
+
+
+
+
             <div>
                 <input
                     type="search"
@@ -113,3 +155,64 @@ export const query = graphql`
 
 export const Head = ()=> <Seo title="Blog"/>
 
+
+
+const InputWrap = styled.div<IInputWrap>`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 30px;
+    select{
+        -webkit-appearance: none;
+        appearance: none;
+        width: 160px; 
+        height: 50px; 
+        border: 1px solid #E0E0E0; 
+        border-radius:4px; 
+        padding-left: 15px; 
+        font-size: 16px;  
+        color: #828282; 
+        background: #fff url(${iconSelect}) center right 15px no-repeat; 
+        background-size: 18px;
+    }
+    p{
+        color: #818181;
+        margin-right: 20px;
+    }
+    /* div:last-child{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    } */
+
+    input{
+        width: 450px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        color: #828282;
+        font-size: 16px;
+        height: 50px;
+        padding: 0 15px;
+        ${(props) => props.keyword === "" && css`
+            background: url(${iconSearch}) center right 15px no-repeat;
+            background-size: 20px;
+        `}
+    }
+
+    @media screen and (max-width: 768px){
+        display: block;
+        p{
+            font-size: 14px;
+        }
+        input{
+            width: 100%;
+        }
+    }
+`
+
+const SelectBox = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 10px;
+`
