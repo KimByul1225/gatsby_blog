@@ -5,15 +5,11 @@ import { graphql, PageProps } from 'gatsby';
 
 import Stack from "../../stack/index.mdx";
 import NowStudying from "../../stack/nowStudying.mdx";
-
 import { MDXProvider} from "@mdx-js/react";
-
 import { styled } from "styled-components";
-
-
-
 import {  StaticImage } from "gatsby-plugin-image";
 import Row from "../components/common/Row";
+import TagList from "../components/common/TagList";
 
 
 // const MyH1 = (props: React.JSX.IntrinsicAttributes & React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement>) => <h1 style={{ color: `tomato` }} {...props} />
@@ -28,21 +24,21 @@ import Row from "../components/common/Row";
 
 
 
-function WorkDetail({item}: {item: readonly (string | null)[] | null | undefined}) { 
-    return(
-        <TagWrap>
-          {
-              item && item.map((el, index) => {
-                  return(
-                      <span key={index}>
-                        # {el}
-                      </span>
-                  )
-              })
-          }
-        </TagWrap>
-    )
-}
+// function WorkDetail({item}: {item: readonly (string | null)[] | null | undefined}) { 
+//     return(
+//         <TagWrap>
+//           {
+//               item && item.map((el, index) => {
+//                   return(
+//                       <span key={index}>
+//                         # {el}
+//                       </span>
+//                   )
+//               })
+//           }
+//         </TagWrap>
+//     )
+// }
 
 
 export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
@@ -67,7 +63,7 @@ export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
                 <p>
                   {item.frontmatter?.startDate} ~ {item.frontmatter?.endDate}<span>{item.frontmatter?.period}</span>
                 </p>
-                  <WorkDetail item={item.frontmatter?.work}/>
+                <TagList item={item.frontmatter?.work}/>
               </ExperienceDetail>                
             </ExperienceList>
             ))
@@ -133,10 +129,11 @@ const ExperienceList = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid #e4e4e4;
   &:first-child{
     border-top: 1px solid #e4e4e4;
   }
-  border-bottom: 1px solid #e4e4e4;
+
   h3{
     width: 30%;
     font-size: 28px;
@@ -165,17 +162,6 @@ const ExperienceList = styled.div`
 
 const ExperienceDetail = styled.div`
   width: 70%;
-`
-
-const TagWrap = styled.div`
-  span{
-    display: inline-block;
-    margin: 0 20px 10px 0;
-    padding: 5px 15px;
-    background-color: #000;
-    color: #fff;
-    border-radius: 20px;
-  }
 `
 
 const MdxWrap = styled(MDXProvider)`

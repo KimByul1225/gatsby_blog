@@ -18,7 +18,6 @@ function Layout({children, title}: ILayoutProps) {
         <div>
             <Haeder/>
             <Main>
-                <h1>{title}</h1>
                 {children}
             </Main>
             <Footer/>
@@ -29,5 +28,5 @@ function Layout({children, title}: ILayoutProps) {
 export default Layout;
 
 const Main = styled.main`
-    padding: 0 0 150px 0;
+    padding: 50px 0 150px 0;
 `

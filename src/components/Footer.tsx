@@ -15,7 +15,7 @@ function Footer() {
             <Row>
                 <SpaceBetween>
                     <p>
-                        &#169; ByulKim, Built with Gatsby.
+                        &copy; ByulKim, Built with Gatsby.
                     </p>
                     <IconWrap>
                         <Link to="/">
