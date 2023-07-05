@@ -42,6 +42,16 @@ const options = {
     },
     renderNode: {
         [BLOCKS.PARAGRAPH]: (node: any, children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => <p>{children}</p>,
+        [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+            const { gatsbyImageData, title } = node.data.target;
+            console.log("img", node.data.target);
+            return (
+                <GatsbyImage
+                    image={getImage(gatsbyImageData)!}
+                    alt={title}
+                />
+            )
+        },
     },
     renderText: (text: string) => {
         if (!text) return <br />; 
@@ -98,6 +108,18 @@ export const query = graphql`
             description
             detail {
                 raw
+                # references{
+                #     gatsbyImageData(placeholder: BLURRED, height: 400)
+                # }
+                references{
+                    ... on ContentfulAsset {
+                        contentful_id
+                        title
+                        description
+                        gatsbyImageData(width: 1000)
+                        __typename
+                    }
+                }
             }
             headerImage {
                 gatsbyImageData(placeholder: BLURRED, height: 400)
@@ -237,6 +259,12 @@ const Viewer = styled.div`
 
     a {
         text-decoration: revert;
+    }
+    blockquote, q{
+        quotes: revert;
+    }
+    ol, ul {
+        list-style: revert;
     }
 `
 const ButtonWrap = styled.div`
