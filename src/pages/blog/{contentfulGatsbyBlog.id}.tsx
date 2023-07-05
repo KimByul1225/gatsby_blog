@@ -39,12 +39,16 @@ interface IBlogList {
 const options = {
     renderMark: {
         [MARKS.BOLD]: (text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => <strong>{text}</strong>,
+        [MARKS.CODE]: (text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => {
+            if (text.length > 0) { 
+                return <code>{text}</code>; 
+            } 
+        },
     },
     renderNode: {
         [BLOCKS.PARAGRAPH]: (node: any, children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => <p>{children}</p>,
         [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
             const { gatsbyImageData, title } = node.data.target;
-            console.log("img", node.data.target);
             return (
                 <GatsbyImage
                     image={getImage(gatsbyImageData)!}
