@@ -1,17 +1,24 @@
 import React from "react";
-
-
 import { graphql } from "gatsby";
-
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { navigate } from "gatsby";
-
 import Layout from "../../components/Layout";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
-import { BLOCKS, MARKS } from "@contentful/rich-text-types";
-import Row from "../../components/common/Row";
 
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+
+import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import Row from "../../components/common/Row";
 import { styled } from "styled-components";
+
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
+
+
+
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+
+import CodeBlock from "../../components/blog/CodeBlock";
 
 
 /**
@@ -37,16 +44,45 @@ interface IBlogList {
 }
 
 const options = {
+    
     renderMark: {
         [MARKS.BOLD]: (text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => <strong>{text}</strong>,
-        [MARKS.CODE]: (text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => {
-            if (text.length > 0) { 
-                return <code>{text}</code>; 
-            } 
+        // [MARKS.CODE]: (text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => {
+        //     console.log("text", text);
+        //     return(
+        //         <code>
+        //             {text}
+        //         </code>
+        //     )
+        // },
+        [MARKS.CODE]: (text: any) => {
+            console.log("text", text)
+            return (
+                <SyntaxHighlighter
+                    language="javascript"
+                    style={obsidian}
+                    showLineNumbers
+                >
+                    {text}
+                </SyntaxHighlighter>
+            );
         },
+
     },
     renderNode: {
-        [BLOCKS.PARAGRAPH]: (node: any, children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => <p>{children}</p>,
+        [BLOCKS.PARAGRAPH]: (node: any, children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => {
+            // return(
+            //     <p>{children}</p>
+            // )
+            if (
+                node.content.length === 1 &&
+                node.content[0].marks.find((x:any) => x.type === "code")
+            ) {
+                return <div>{children}</div>;
+            }
+                return <p>{children}</p>;
+            
+        },
         [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
             const { gatsbyImageData, title } = node.data.target;
             return (
@@ -56,10 +92,23 @@ const options = {
                 />
             )
         },
+        [BLOCKS.EMBEDDED_ENTRY]: (node: any) => {
+            console.log("node", node.data);
+            return (
+                null
+                // <pre>
+                //     <code>
+                //         {node.data.target.fields.code}
+                //     </code>
+                // </pre>
+                
+            )
+        },
+
     },
     renderText: (text: string) => {
         if (!text) return <br />; 
-        return text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]);
+        return text.split("\n").flatMap((text, i) => [i > 0 && <br key={i} />, text]);
     },
     
 }
@@ -68,15 +117,13 @@ const options = {
 
 export default function BlogDetail({data}: {data: IBlogList}) {
     const { contentfulGatsbyBlog } = data;
-
     const urlPath = `https:${contentfulGatsbyBlog.headerImage?.file?.url}`;
 
-    console.log("contentfulGatsbyBlog", contentfulGatsbyBlog.detail.raw);
+    
+    console.log("Data", data);
 
-    
-    
-    // const image = getImage(data.contentfulProduct?.preview?.gatsbyImageData!);
-    // console.log("상세", data);
+
+
     return (
         <Layout
             title="상세"
@@ -112,15 +159,12 @@ export const query = graphql`
             description
             detail {
                 raw
-                # references{
-                #     gatsbyImageData(placeholder: BLURRED, height: 400)
-                # }
                 references{
                     ... on ContentfulAsset {
                         contentful_id
                         title
                         description
-                        gatsbyImageData(width: 1000)
+                        gatsbyImageData(placeholder: BLURRED, width: 1000)
                         __typename
                     }
                 }
@@ -264,12 +308,28 @@ const Viewer = styled.div`
     a {
         text-decoration: revert;
     }
+    blockquote{
+        margin-left: 20px;
+        padding-left: 20px;
+        border-left: 6px solid rgb(231, 235, 238);
+    }
     blockquote, q{
         quotes: revert;
     }
     ol, ul {
         list-style: revert;
     }
+    code{
+        /* background: #f5f5f5;
+        display: block;
+        white-space: pre;
+        padding: 30px;
+        border-radius: 15px;
+        overflow-x: auto; */
+    }
+    /* code{
+        padding: 30px;
+    } */
 `
 const ButtonWrap = styled.div`
     margin-top: 60px;
