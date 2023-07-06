@@ -54,24 +54,24 @@ const options = {
             )
         },
         [BLOCKS.EMBEDDED_ENTRY]: (node: any) => {
-            const {code, codeType} = node.data.target.fields;
+            const {code, codeType} = node.data.target?.fields || {};
             return (
-                <>
-                    <div>
-                        {codeType["en-US"]}
-                    </div>
+                    code ? <>
+                        <SyntaxHighlighter
+                            language={codeType["en-US"]}
+                            style={obsidian}
+                            showLineNumbers
+                        >
+                            {code["en-US"]}
+                        </SyntaxHighlighter>
+                    </>
+                    :
                     <SyntaxHighlighter
-                        language={codeType["en-US"]}
+                        language="html"
                         style={obsidian}
-                        showLineNumbers
                     >
-                        {code["en-US"]}
+                        코드 불러오기에 실패 했습니다.
                     </SyntaxHighlighter>
-                </>
-
-                
-                
-                
             )
         },
     },
