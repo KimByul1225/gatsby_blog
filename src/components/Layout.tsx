@@ -1,7 +1,7 @@
 import React from 'react';
 import Haeder from './Haeder';
 import Footer from './Footer';
-import { styled } from 'styled-components';
+import { StyleSheetManager, styled } from 'styled-components';
 
 
 interface ILayoutProps{
@@ -15,13 +15,13 @@ interface ILayoutProps{
 
 function Layout({children, title}: ILayoutProps) {
     return (
-        <div>
+        <StyleSheetManager shouldForwardProp={() => true}>
             <Haeder/>
             <Main>
                 {children}
             </Main>
             <Footer/>
-        </div>
+        </StyleSheetManager>
     );
 }
 

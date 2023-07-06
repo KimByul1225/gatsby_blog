@@ -3,6 +3,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import { Link } from "gatsby";
 
+
 interface IBlogList {
     id: string;
     title: string | null;
@@ -12,7 +13,6 @@ interface IBlogList {
     detail: { readonly raw: string | null } | null;
     headerImage : { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData | null, readonly file: { readonly url: string | null } | null };
 }
-
 
 
 function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offset: number}) {

@@ -20,11 +20,9 @@ export default function blog({data}: PageProps<Queries.BlogsQuery>) {
     const {nodes} = data.allContentfulGatsbyBlog;
     const [keyword, setKeyword] = useState("");
     const [listSort, setListSort] = useState("desc");
-
     const limit = 10;
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
-    console.log("nodes", nodes);
 
     // 방법1
     // const filtering = (el: any) => {

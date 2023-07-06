@@ -1,7 +1,5 @@
 import React from 'react';
 import Row from './common/Row';
-import { Link } from 'gatsby';
-
 import { styled } from 'styled-components';
 import iconGitHub from "../images/common/icon_github.svg";
 import iconNotion from "../images/common/icon_notion.svg";
@@ -18,27 +16,39 @@ function Footer() {
                         &copy; ByulKim, Built with Gatsby.
                     </p>
                     <IconWrap>
-                        <Link to="/">
+                        <a
+                            href="https://github.com/KimByul1225"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             <span
                                 className="ir_so"
                             >
                                 git hub 아이콘
                             </span>
-                        </Link>
-                        <Link to="/">
+                        </a>
+                        <a
+                            href="https://github.com/KimByul1225"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             <span
                                 className="ir_so"
                             >
                                 notion 아이콘
                             </span>
-                        </Link>
-                        <Link to="/" >
+                        </a>
+                        <a
+                            href="https://github.com/KimByul1225"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             <span
                                 className="ir_so"
                             >
                                 linked in 아이콘
                             </span>
-                        </Link>
+                        </a>
                         <a 
                             href="mailto:byulkim1225@gmail.com" 
                             target="_blank"

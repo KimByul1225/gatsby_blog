@@ -54,8 +54,6 @@ const options = {
             )
         },
         [BLOCKS.EMBEDDED_ENTRY]: (node: any) => {
-            console.log("node", node.data);
-           // const test = JSON.stringify(node.data.target.fields.code);
             const {code, codeType} = node.data.target.fields;
             return (
                 <>
@@ -80,7 +78,6 @@ const options = {
     renderMark: {
         [MARKS.BOLD]: (text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => <strong>{text}</strong>,
         [MARKS.CODE]: (text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => {
-            console.log("text", text);
             return(
                 <code>
                     {text}
