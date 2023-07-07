@@ -2,6 +2,7 @@ import React from 'react';
 import Haeder from './Haeder';
 import Footer from './Footer';
 import { StyleSheetManager, styled } from 'styled-components';
+import GoTopButton from './common/GoTopButton';
 
 
 interface ILayoutProps{
@@ -20,6 +21,7 @@ function Layout({children, title}: ILayoutProps) {
             <Main>
                 {children}
             </Main>
+            <GoTopButton/>
             <Footer/>
         </StyleSheetManager>
     );
