@@ -30,6 +30,7 @@ function Haeder() {
                     <Navi>
                         <ul>
                             <li><Link to="/" className={isActive("")}>Home</Link></li>
+                            <li><Link to="/introduction" className={isActive("introduction")}>Introduction</Link></li>
                             <li><Link to="/project" className={isActive("project")}>Project</Link></li>
                             <li><Link to="/blog" className={isActive("blog")}>Blog</Link></li>
                         </ul>
@@ -129,6 +130,9 @@ const Navi = styled.nav`
         }
         li{
             margin-right: 0px;
+        }
+        li a{
+            font-size: 16px;
         }
     }
 `

@@ -19,9 +19,8 @@ function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offs
     return (
         <ul>
             {
-                data.slice(offset, offset + limit).map((item, index) => {
+                data.length != 0 ? data.slice(offset, offset + limit).map((item, index) => {
                     const image = getImage(item?.headerImage?.gatsbyImageData!);
-                    
                     return(
                         <List key={index}>
                             <Link
@@ -43,7 +42,12 @@ function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offs
                         </List>
                     )
                 })
+                :
+                <ListNone>
+                    게시글이 없습니다.
+                </ListNone>
             }
+            
         </ul>
     );
 }
@@ -75,10 +79,18 @@ const List = styled.li`
         
     }
 `
-
+const ListNone = styled.li`
+    border-bottom: 1px solid #e4e4e4;
+    border-top: 1px solid #e4e4e4;
+    padding: 30px 0;
+    color: #000;
+    text-align: center;
+    font-size: 18px;
+`
 
 const DeatailWrap = styled.div`
     width: calc(100% - 200px);
+    padding-right: 10px;
     h5{
         color: #ff4d15;
         font-size: 18px;
@@ -101,6 +113,7 @@ const DeatailWrap = styled.div`
     @media screen and (max-width: 768px) {
         width: 100%;
         margin-top: 30px;
+        padding-right: 0;
     }
 `
 

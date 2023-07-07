@@ -1,89 +1,52 @@
-import * as React from "react";
+import React from "react";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { graphql, PageProps } from 'gatsby';
-
-import Stack from "../../stack/index.mdx";
-import NowStudying from "../../stack/nowStudying.mdx";
-import { MDXProvider} from "@mdx-js/react";
 import { styled } from "styled-components";
-import {  StaticImage } from "gatsby-plugin-image";
-import Row from "../components/common/Row";
-import TagList from "../components/common/TagList";
+import backgroundImage from "../images/home/main_code.jpg";
 
 
-// const MyH1 = (props: React.JSX.IntrinsicAttributes & React.ClassAttributes<HTMLHeadingElement> & React.HTMLAttributes<HTMLHeadingElement>) => <h1 style={{ color: `tomato` }} {...props} />
-// const MyParagraph = (props: React.JSX.IntrinsicAttributes & React.ClassAttributes<HTMLParagraphElement> & React.HTMLAttributes<HTMLParagraphElement>) => (
-//     <p style={{ fontSize: "18px", lineHeight: 1.6 }} {...props} />
-// )
-
-// const components = {
-//     h1: MyH1,
-//     p: MyParagraph,
-// }
-
-
-
-// function WorkDetail({item}: {item: readonly (string | null)[] | null | undefined}) { 
-//     return(
-//         <TagWrap>
-//           {
-//               item && item.map((el, index) => {
-//                   return(
-//                       <span key={index}>
-//                         # {el}
-//                       </span>
-//                   )
-//               })
-//           }
-//         </TagWrap>
-//     )
-// }
-
+interface IBackgroundBox {
+  image: string;
+}
 
 export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
   return (
     <Layout title="Home">
-      <Row>
-        <StaticImage src="https://images.unsplash.com/photo-1625768376503-68d2495d78c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80" alt="Stickers"/>
-
-        <SectionTitle>
-          Experience 🧑🏻‍💻
-        </SectionTitle>
-        <ExperienceWrap>
-          {
-            data.allMdx?.nodes.map((item, index)=>(
-            <ExperienceList key={index}>
-              <h3>
-                {item.frontmatter?.companyName}
-              </h3>
-              <ExperienceDetail>
-                <h4>{item.frontmatter?.task}</h4>
-                <h5>{item.frontmatter?.team} / {item.frontmatter?.position}</h5>
-                <p>
-                  {item.frontmatter?.startDate} ~ {item.frontmatter?.endDate}<span>{item.frontmatter?.period}</span>
-                </p>
-                <TagList item={item.frontmatter?.work}/>
-              </ExperienceDetail>                
-            </ExperienceList>
-            ))
-          }
-        </ExperienceWrap>
-                
-        <SectionTitle>
-          Stacks 💻
-        </SectionTitle>
-        <MdxWrap as="div">
-          <Stack/>
-        </MdxWrap>
+      <MainWrap>
         
-        <SectionTitle>
-          Now Studying ✍🏻
-        </SectionTitle>
-        <MdxWrap as="div">
-          <NowStudying/>
-        </MdxWrap>
-      </Row>      
+        <FlexWrap>
+          <BackgroundBox
+            image={backgroundImage}
+          />
+          <ItroBox>
+            <h2>김 별 <span>(Byul Kim)</span></h2>
+            <h4>@ KimByul1225</h4>
+            <p>
+              Anyang, Republic of Korea
+            </p>
+            <a 
+                href="mailto:byulkim1225@gmail.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+            >byulkim1225@gmail.com</a>
+            <p>
+              본 블로그는 <a 
+                href="https://www.gatsbyjs.com/" 
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Gatsby
+              </a>를 활용하여 직접 만들었으며,   
+            </p>
+            <p>
+              게시글은 본인이 직접 공부한 내용을 작성한 것으로 일부 내용은 정확하지 않은 내용을 포함하고 있을 수 있습니다.
+            </p>
+          </ItroBox>
+          
+        </FlexWrap>
+        
+      </MainWrap>      
     </Layout>
   )
 }
@@ -110,66 +73,83 @@ export const query = graphql`
 
 export const Head = ()=> <Seo title="Home"/>
 
-const SectionTitle = styled.h2`
-  font-size: 32px;
-  font-weight: 700;
-  border-left: 5px solid #000;
-  padding-left: 20px;
-  margin-top: 80px;
-  margin-bottom: 20px;
-  line-height: 45px;
+const MainWrap = styled.div`
+    max-width: 1000px; 
+    min-height: calc(100vh - 446px);
+    margin: 0 auto;
+    padding-top: 150px;
+    display: flex;
+    align-items: center;
+    @media screen and (max-width: 1200px){
+        max-width: 100%; 
+        padding: 50px 20px 0 20px;
+    }
+    
 `
 
-const ExperienceWrap = styled.div`
-  
-`
 
-const ExperienceList = styled.div`
-  padding: 30px 0;
+const FlexWrap = styled.div`
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-  border-bottom: 1px solid #e4e4e4;
-  &:first-child{
-    border-top: 1px solid #e4e4e4;
+  margin-bottom: 80px;
+  @media screen and (max-width: 768px){
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
   }
+`
 
-  h3{
-    width: 30%;
-    font-size: 28px;
-    font-weight: 600;
+const ItroBox = styled.div`
+  width: calc(100% - 400px);
+  padding: 0 0 15px 30px;
+  h2{
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    span{
+      font-size: 32px;
+      font-weight: 500;
+    }
   }
   h4{
-    color: #ff4d15;
     font-size: 18px;
-    margin-bottom: 20px;
+    padding-left: 10px;
+    margin-bottom: 45px;
   }
   h5{
+    padding-left: 10px;
     margin-bottom: 10px;
   }
   p{
-    color: #818181;
-    font-weight: 300;
-    margin-bottom: 20px;
-    span{
-      color: #000;
-      display: inline-block;
-      margin-left: 10px;
-      font-weight: 600;
-    }
+    padding-left: 10px;
+    word-break: keep-all;
+  }
+  a{
+    display: inline-block;
+    color: #000;
+    text-decoration: underline;
+  }
+  > a{
+    padding-left: 10px;
+    margin-bottom: 35px;
+  }
+  @media screen and (max-width: 768px){
+    width: 100%;
+    padding: 10px;
+    margin-top: 30px;
+    text-align: center;
   }
 `
+const BackgroundBox = styled.div<IBackgroundBox>`
+  width: 400px;
+  background: url(${backgroundImage}) center no-repeat;
+  background-size: cover;
+  border-radius: 15px;
+  @media screen and (max-width: 768px){
+    width: 100%;
+    height: 300px;
+  }
 
-const ExperienceDetail = styled.div`
-  width: 70%;
 `
 
-const MdxWrap = styled(MDXProvider)`
-  font-size: 32px;
-  padding-top: 20px;
-  img{
-    height: 34px;
-    width: auto;
-    border-radius: 20px;
-  }
-`;

@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { navigate } from "gatsby";
 import Layout from "../../components/Layout";
@@ -34,6 +34,16 @@ interface IBlogList {
 }
 
 const options = {
+    renderMark: {
+        [MARKS.BOLD]: (text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => <strong>{text}</strong>,
+        [MARKS.CODE]: (text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => {
+            return(
+                <code>
+                    {text}
+                </code>
+            )
+        },
+    },
     renderNode: {
         [BLOCKS.PARAGRAPH]: (node: any, children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => {
             if (
@@ -55,6 +65,7 @@ const options = {
         },
         [BLOCKS.EMBEDDED_ENTRY]: (node: any) => {
             const {code, codeType} = node.data.target?.fields || {};
+            console.log("Node", node);
             return (
                     code ? <>
                         <SyntaxHighlighter
@@ -70,18 +81,8 @@ const options = {
                         language="html"
                         style={obsidian}
                     >
-                        코드 불러오기에 실패 했습니다.
+                        에러가 발생하여, 코드 불러오기에 실패 했습니다.
                     </SyntaxHighlighter>
-            )
-        },
-    },
-    renderMark: {
-        [MARKS.BOLD]: (text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => <strong>{text}</strong>,
-        [MARKS.CODE]: (text: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined) => {
-            return(
-                <code>
-                    {text}
-                </code>
             )
         },
     },
@@ -111,9 +112,9 @@ export default function BlogDetail({data}: {data: IBlogList}) {
                 </DeatailWrap>
                 <Viewer>{renderRichText(contentfulGatsbyBlog.detail, options)}</Viewer>
                 <ButtonWrap>
-                    <button onClick={() => navigate(-1)}>
+                    <Link to="/blog/">
                         목록
-                    </button>
+                    </Link>
                 </ButtonWrap>
 
             </Row>
@@ -297,7 +298,7 @@ const Viewer = styled.div`
 const ButtonWrap = styled.div`
     margin-top: 60px;
     text-align: center;
-    button{
+    a{
         border-radius: 5px;
         display: inline-block;
         font-size: 18px;
@@ -310,13 +311,13 @@ const ButtonWrap = styled.div`
         color: #fff;
         transition: all .3s ease;
     }
-    button:hover{
+    a:hover{
         background: #fff;
         color: #ff4d15;
         transition: all .3s ease;
     }
     @media screen and (max-width: 768px){
-        button{
+        a{
             font-size: 16px;
             height: 50px;
             line-height: 50px;

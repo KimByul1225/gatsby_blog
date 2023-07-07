@@ -62,12 +62,14 @@ export default function blog({data}: PageProps<Queries.BlogsQuery>) {
                         />
                     </div>
                 </InputWrap>
-                <TotalCount> 총 <span>{filtering(nodes).length}</span> 건</TotalCount>
+                <TotalCount> {keyword === "" ? "총" : `"${keyword}" 검색결과`} <span>{filtering(nodes).length}</span> 건</TotalCount>
                 <BlogList 
                     data={filtering(nodes)}
                     limit={limit}
                     offset={offset}
-                    />
+                />
+                
+                
                 <Pagination
                     total={filtering(nodes).length}
                     limit={limit}
