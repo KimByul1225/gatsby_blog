@@ -24,16 +24,21 @@ const Pagination = ( {total, limit, page, setPage} : IPagination) => {
     return (
         <>
             <PaginationWrap>
-                <FirstButton
-                    onClick={() => setPage(1)} disabled={page === 1}
-                >
-                    <span className="ir_so">맨 앞페이지로 이동</span>
-                </FirstButton>
-                <PrevButton
-                    onClick={() => setPage(page - 1)} disabled={page === 1}
-                >
-                    <span className="ir_so">이전 페이지로 이동</span>
-                </PrevButton>
+                {
+                    paginationgArr.length > 0 && <>
+                        <FirstButton
+                            onClick={() => setPage(1)} disabled={page === 1}
+                        >
+                            <span className="ir_so">맨 앞페이지로 이동</span>
+                        </FirstButton>
+                        <PrevButton
+                            onClick={() => setPage(page - 1)} disabled={page === 1}
+                        >
+                            <span className="ir_so">이전 페이지로 이동</span>
+                        </PrevButton>
+                    </>
+                }
+                
                 <NumberBox>
                     {
                         paginationgArr.map((item, index)=>{
@@ -51,16 +56,21 @@ const Pagination = ( {total, limit, page, setPage} : IPagination) => {
                         })
                     }
                 </NumberBox>
-                <NextButton
-                    onClick={() => setPage(page + 1)} disabled={page === numPages}
-                >
-                    <span className="ir_so">다음 페이지로 이동</span>
-                </NextButton>
-                <LastButton
-                    onClick={() => setPage(numPages)} disabled={page === numPages}
-                >
-                    <span className="ir_so">마지막 페이지로 이동</span>
-                </LastButton>
+                {
+                    paginationgArr.length > 0 && <>
+                        <NextButton
+                            onClick={() => setPage(page + 1)} disabled={page === numPages}
+                        >
+                            <span className="ir_so">다음 페이지로 이동</span>
+                        </NextButton>
+                        <LastButton
+                            onClick={() => setPage(numPages)} disabled={page === numPages}
+                        >
+                            <span className="ir_so">마지막 페이지로 이동</span>
+                        </LastButton>
+                    </>
+                }
+                
             </PaginationWrap>
         </>
     );
