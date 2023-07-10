@@ -3,6 +3,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { styled } from 'styled-components';
 import TagList from '../common/TagList';
 
+import kistGif from "../../images/project/browser_mock_up_kist.gif";
+
 interface IProjectList {
     frontmatter: { 
         id:  number | null | undefined; 
@@ -45,7 +47,7 @@ function ProjectList({data}: {data: IProjectList[]}) {
                         <List key={index}>
                             <DeatailWrap>
                                 <h5>
-                                    {item.frontmatter?.category}
+                                    {item.frontmatter?.category} / {item.frontmatter?.id}
                                 </h5>
                                 <h3 className="ellipsis">
                                     {item.frontmatter?.title}
@@ -63,10 +65,16 @@ function ProjectList({data}: {data: IProjectList[]}) {
                                     item={item.frontmatter?.tag}
                                 />
                             </DeatailWrap>
-                            <StyledGatsbyImage 
-                                image={image as any}
-                                alt={item.frontmatter?.title!}
-                            />
+                            {
+                                item.frontmatter?.id === 3 ?
+                                <StyledGif src={kistGif} alt="kist mock up" /> 
+                                :
+                                <StyledGatsbyImage 
+                                    image={image as any}
+                                    alt={item.frontmatter?.title!}
+                                />
+                            }
+                            
                         </List>
                     )
                 })
@@ -128,6 +136,13 @@ const DeatailWrap = styled.div`
 `
 
 const StyledGatsbyImage = styled(GatsbyImage)`
+    width: 50%;
+    border: 1px solid #eee;
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+`
+const StyledGif = styled.img`
     width: 50%;
     border: 1px solid #eee;
     @media screen and (max-width: 768px) {
