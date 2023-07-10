@@ -47,7 +47,7 @@ function ProjectList({data}: {data: IProjectList[]}) {
                         <List key={index}>
                             <DeatailWrap>
                                 <h5>
-                                    {item.frontmatter?.category} / {item.frontmatter?.id}
+                                    {item.frontmatter?.category}
                                 </h5>
                                 <h3 className="ellipsis">
                                     {item.frontmatter?.title}
