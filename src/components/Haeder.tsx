@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "gatsby";
 import styled, {keyframes} from 'styled-components';
 import logo from "../images/common/logo_symbol.png";
@@ -6,6 +6,18 @@ import logo from "../images/common/logo_symbol.png";
 
 
 function Haeder() {
+    const [fixedHeder, setFixedHeder] = useState(false);
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 110) {
+                setFixedHeder(true);
+            } else {
+                setFixedHeder(false);
+            }
+        });
+    }, []);
+
+
     const isActive = (path: string) => {
         const sliceLocation = location.pathname.substring(1);
         const substringLocaton = sliceLocation.split("/");
@@ -14,7 +26,9 @@ function Haeder() {
     }
 
     return (
-        <HeaderWrap>
+        <HeaderWrap
+            className={fixedHeder ? "on" : ""} 
+        >
             <Row>
                 <SpaceBetween>
                     <Logo
@@ -44,9 +58,26 @@ function Haeder() {
 
 export default Haeder
 
+
+const headerAnimation = keyframes`
+    from{
+        opacity: 0.1;
+    }to{
+        opacity: 1;
+    }
+`;
+
 const HeaderWrap = styled.header`
+    width: 100%;
+    background-color: #fff;
     padding: 30px 0;
     box-shadow: 0px 3px  7px 3px #e4e4e4;
+    &.on{
+        position: fixed;
+        top: 0;
+        z-index: 999;
+        animation: ${headerAnimation} .2s ease-out;
+    }
     @media screen and (max-width: 768px){
         padding: 20px 0;
     }

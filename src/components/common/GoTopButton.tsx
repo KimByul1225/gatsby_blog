@@ -13,7 +13,6 @@ const GoTopButton = () => {
             }
         });
     }, []);
-
     const goToTop = () => {
         window.scrollTo({
             top: 0,
