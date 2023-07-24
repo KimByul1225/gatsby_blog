@@ -6,9 +6,9 @@ const Comments = () => {
     useEffect(() => {
         const script = document.createElement('script');
         script.src = 'https://utteranc.es/client.js';
-        script.setAttribute('repo', 'kimbyul1225_gatsby_blog_comments');
+        script.setAttribute('repo', 'KimByul1225/gatsby_blog_comments');
         script.setAttribute('issue-term', 'pathname');
-        script.setAttribute('theme', 'dark-blue');
+        script.setAttribute('theme', 'github-light'); //github-ligh
         script.setAttribute('crossorigin', 'anonymous');
         script.async = true;
 

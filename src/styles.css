@@ -217,6 +217,10 @@ body {
     -webkit-box-orient: vertical
 }
 
+/*== utterances(댓글) ==*/
+.utterances {
+    margin-top: 50px;
+}
 
 @media screen and (max-width:768px) {
     .mb_none {

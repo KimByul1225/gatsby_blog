@@ -6,10 +6,11 @@ import Layout from "../../components/Layout";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import Row from "../../components/common/Row";
+import Comments from "../../components/Comments.js";
+
 import { styled } from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
-
 
 /**
  * @description Blog의 상세 내용을 보여주기 위한 components
@@ -116,6 +117,7 @@ export default function BlogDetail({data}: {data: IBlogList}) {
                         목록
                     </Link>
                 </ButtonWrap>
+                <Comments />
 
             </Row>
         </Layout>
@@ -297,7 +299,10 @@ const Viewer = styled.div`
 `
 const ButtonWrap = styled.div`
     margin-top: 60px;
+    padding-bottom: 100px;
     text-align: center;
+    border-bottom: 1px solid #e4e4e4;
+
     a{
         border-radius: 5px;
         display: inline-block;
