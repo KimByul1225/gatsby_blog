@@ -19,7 +19,9 @@ function Haeder() {
 
 
     const isActive = (path: string) => {
-        const sliceLocation = location.pathname.substring(1);
+        let urlPath = typeof window !== "undefined" ? window.location.pathname : ""
+        
+        const sliceLocation = urlPath.substring(1);
         const substringLocaton = sliceLocation.split("/");
         const locationPath = substringLocaton[0];
         return path === locationPath ? "active" : ""
