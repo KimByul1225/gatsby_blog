@@ -6,7 +6,7 @@ import Layout from "../../components/Layout";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import Row from "../../components/common/Row";
-import Comments from "../../components/Comments.js";
+import Comments from "../../components/comment.js";
 
 import { styled } from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
