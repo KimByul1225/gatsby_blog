@@ -8,15 +8,12 @@ const config: GatsbyConfig = {
     title: `gatsby_blog`,
     siteUrl: `https://www.yourdomain.tld`,
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: `y7vuq0by0w4f`,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },

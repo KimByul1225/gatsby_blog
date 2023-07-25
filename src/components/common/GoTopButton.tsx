@@ -53,4 +53,7 @@ const Button = styled.button`
     z-index: 999;
     &:hover{opacity: 1; transition: all .3s ease;}
     &.on{right: 50px; bottom: 50px; transition: all .3s ease; opacity: 0.7;}
+    @media screen and (max-width: 1200px){
+        display: none;
+    }
 `
