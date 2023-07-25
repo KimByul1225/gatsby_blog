@@ -13,6 +13,9 @@ const config: GatsbyConfig = {
   },
 
   graphqlTypegen: true,
+  flags: {
+    DEV_SSR: true
+  },
   plugins: [
     {
       resolve: `gatsby-source-contentful`,
