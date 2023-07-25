@@ -117,6 +117,7 @@ export default function BlogDetail({data}: {data: IBlogList}) {
                         목록
                     </Link>
                 </ButtonWrap>
+                
                 <Comments />
 
             </Row>

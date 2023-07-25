@@ -1,18 +1,3 @@
-// import React from 'react';
-
-// function index() {
-//     return (
-//         <div>
-//             22
-//         </div>
-//     );
-// }
-
-// export default index;
-
-
-
-
 import * as React from "react";
 import Layout from "../../components/Layout";
 import Seo from "../../components/Seo";
@@ -21,7 +6,6 @@ import Stack from "../../../stack/index.mdx";
 import NowStudying from "../../../stack/nowStudying.mdx";
 import { MDXProvider} from "@mdx-js/react";
 import { styled } from "styled-components";
-// import {  StaticImage } from "gatsby-plugin-image";
 import Row from "../../components/common/Row";
 import TagList from "../../components/common/TagList";
 
@@ -32,8 +16,6 @@ export default function introduction({data}: PageProps<Queries.ExperienceQuery>)
     return (
         <Layout title="Home">
         <Row>
-            {/* <StaticImage src="https://images.unsplash.com/photo-1625768376503-68d2495d78c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80" alt="Stickers"/> */}
-            
             <SectionTitle>
             Experience 🧑🏻‍💻
             </SectionTitle>
