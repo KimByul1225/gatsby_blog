@@ -330,6 +330,11 @@ const Viewer = styled.div`
     p{
         padding-left: 20px;
     }
+    .gatsby-image-wrapper{
+        width: 80%;
+        display: block !important;
+        margin: 0 auto;
+    }
 `
 const ButtonWrap = styled.div`
     margin-top: 60px;
