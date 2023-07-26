@@ -8,8 +8,8 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `gatsby_blog`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `ByulKim-blog`,
+    siteUrl: `https://byulkim-blog.netlify.app`,
   },
 
   graphqlTypegen: true,

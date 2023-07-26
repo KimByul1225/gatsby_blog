@@ -1,13 +1,12 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { navigate } from "gatsby";
+import moment from 'moment';
 import Layout from "../../components/Layout";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import Row from "../../components/common/Row";
 import Comments from "../../components/comment.js";
-
 import { styled } from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -109,7 +108,8 @@ export default function BlogDetail({data}: {data: IBlogList}) {
                     <h5>{contentfulGatsbyBlog.category}</h5>
                     <h3>{contentfulGatsbyBlog.title}</h3>
                     <h4>{contentfulGatsbyBlog.description}</h4>
-                    <p>{contentfulGatsbyBlog.date}</p>
+                    <p>{moment(contentfulGatsbyBlog.date).format('YYYY.MM.DD HH:mm')}</p>
+                    
                 </DeatailWrap>
                 <Viewer>{renderRichText(contentfulGatsbyBlog.detail, options)}</Viewer>
                 <ButtonWrap>
@@ -129,7 +129,8 @@ export const query = graphql`
         contentfulGatsbyBlog(id: {eq: $id}) {
             id
             title
-            date(formatString: "YYYY.MM.DD HH:mm")
+            # date(formatString: "YYYY.MM.DD HH:mm")
+            date
             category
             description
             detail {
@@ -334,6 +335,11 @@ const Viewer = styled.div`
         width: 80%;
         display: block !important;
         margin: 0 auto;
+    }
+    code{
+        display: block;
+        background-color: #f7f6f3;
+        padding: 10px 20px;
     }
 `
 const ButtonWrap = styled.div`

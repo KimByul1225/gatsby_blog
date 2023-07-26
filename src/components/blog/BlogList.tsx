@@ -2,7 +2,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { styled } from 'styled-components';
 import { Link } from "gatsby";
-
+import moment from 'moment';
 
 interface IBlogList {
     id: string;
@@ -30,7 +30,7 @@ function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offs
                                     <h5>{item?.category}</h5>
                                     <h3 className="ellipsis">{item?.title}</h3>
                                     <h4 className="ellipsis">{item?.description}</h4>
-                                    <p>{item?.date}</p>
+                                    <p>{moment(item?.date).format('YYYY.MM.DD HH:mm')}</p>
                                 </DeatailWrap>
 
                                 <StyledGatsbyImage 

@@ -89,7 +89,8 @@ export const query = graphql`
             nodes {
                 id
                 title
-                date(formatString: "YYYY.MM.DD HH:mm")
+                # date(formatString: "YYYY.MM.DD HH:mm")
+                date
                 category
                 description
                 detail {
