@@ -12,7 +12,7 @@ interface IBackgroundBox {
 
 export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
   return (
-    <Layout title="Home">
+    <Layout>
       <MainWrap>
         <FlexWrap>
           <BackgroundBox

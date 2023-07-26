@@ -40,7 +40,7 @@ export default function blog({data}: PageProps<Queries.BlogsQuery>) {
     }
     
     return (
-        <Layout title="Blog">
+        <Layout>
             <Row>
                 <InputWrap
                     keyword = {keyword}

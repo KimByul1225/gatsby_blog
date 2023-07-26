@@ -10,6 +10,7 @@ import Comments from "../../components/comment.js";
 import { styled } from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import Seo from "../../components/Seo";
 
 /**
  * @description Blog의 상세 내용을 보여주기 위한 components
@@ -97,9 +98,7 @@ export default function BlogDetail({data}: {data: IBlogList}) {
     const { contentfulGatsbyBlog } = data;
     const urlPath = `https:${contentfulGatsbyBlog.headerImage?.file?.url}`;
     return (
-        <Layout
-            title="상세"
-        >
+        <Layout>
             <Background
                 img={urlPath}
             />
@@ -154,6 +153,8 @@ export const query = graphql`
         }
     }
 `
+
+export const Head = ()=> <Seo title="Blog상세"/>
 
 
 const Background = styled.div<IBackground>`
@@ -340,6 +341,9 @@ const Viewer = styled.div`
         display: block;
         background-color: #f7f6f3;
         padding: 10px 20px;
+    }
+    pre code{
+        background-color: unset;
     }
 `
 const ButtonWrap = styled.div`

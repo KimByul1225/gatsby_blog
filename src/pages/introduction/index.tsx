@@ -14,7 +14,7 @@ import TagList from "../../components/common/TagList";
 
 export default function introduction({data}: PageProps<Queries.ExperienceQuery>) {
     return (
-        <Layout title="Home">
+        <Layout>
         <Row>
             <SectionTitle>
             Experience 🧑🏻‍💻

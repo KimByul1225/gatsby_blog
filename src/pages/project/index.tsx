@@ -24,7 +24,7 @@ export default function project({data}: PageProps<Queries.ProjectQuery>) {
     }
     
     return (
-        <Layout title="Project">
+        <Layout>
             <Row>
                 <InputWrap>
                     <p>
