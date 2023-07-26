@@ -297,6 +297,39 @@ const Viewer = styled.div`
     pre{
         border-radius: 5px;
     }
+    h1{
+        text-align: center;
+        word-break: keep-all;
+        position: relative;
+        padding-bottom: 50px;
+    }
+    h1::after {
+        content: '';
+        position:  absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: block;
+        width: 33.333%;
+        height: 2px;
+        background-color: #e4e4e4;
+    }
+    h2{
+        border-left: 5px solid #e4e4e4;
+        padding-left: 15px;
+    }
+    h3{
+        text-align: center;
+        word-break: keep-all;
+        padding: 0 20px;
+    }
+    h4, h5{
+        word-break: keep-all;
+        padding-left: 20px;
+    }
+    p{
+        padding-left: 20px;
+    }
 `
 const ButtonWrap = styled.div`
     margin-top: 60px;
