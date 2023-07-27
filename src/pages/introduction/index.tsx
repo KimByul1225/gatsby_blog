@@ -23,17 +23,17 @@ export default function introduction({data}: PageProps<Queries.ExperienceQuery>)
             {
                 data.allMdx?.nodes.map((item, index)=>(
                 <ExperienceList key={index}>
-                <h3>
-                    {item.frontmatter?.companyName}
-                </h3>
-                <ExperienceDetail>
-                    <h4>{item.frontmatter?.task}</h4>
-                    <h5>{item.frontmatter?.team} / {item.frontmatter?.position}</h5>
-                    <p>
-                    {item.frontmatter?.startDate} ~ {item.frontmatter?.endDate}<span>{item.frontmatter?.period}</span>
-                    </p>
-                    <TagList item={item.frontmatter?.work}/>
-                </ExperienceDetail>                
+                    <h3>
+                        {item.frontmatter?.companyName}
+                    </h3>
+                    <ExperienceDetail>
+                        <h4>{item.frontmatter?.task}</h4>
+                        <h5>{item.frontmatter?.team} / {item.frontmatter?.position}</h5>
+                        <p>
+                        {item.frontmatter?.startDate} ~ {item.frontmatter?.endDate}<span>{item.frontmatter?.period}</span>
+                        </p>
+                        <TagList item={item.frontmatter?.work}/>
+                    </ExperienceDetail>                
                 </ExperienceList>
                 ))
             }
@@ -127,6 +127,13 @@ const ExperienceList = styled.div`
         display: inline-block;
         margin-left: 10px;
         font-weight: 600;
+        }
+    }
+    @media screen and (max-width: 768px){
+        flex-direction: column;
+        align-items: flex-start;
+        h3{
+            margin-bottom: 20px;
         }
     }
 `

@@ -76,6 +76,9 @@ const List = styled.li`
         a{
             flex-direction: column-reverse
         }
+        a:hover{
+            opacity: 1;
+        }
         
     }
 `

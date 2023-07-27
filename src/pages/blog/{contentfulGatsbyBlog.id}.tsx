@@ -66,7 +66,6 @@ const options = {
         },
         [BLOCKS.EMBEDDED_ENTRY]: (node: any) => {
             const {code, codeType} = node.data.target?.fields || {};
-            console.log("Node", node);
             return (
                     code ? <>
                         <SyntaxHighlighter
@@ -341,9 +340,11 @@ const Viewer = styled.div`
         display: block;
         background-color: #f7f6f3;
         padding: 10px 20px;
+        border-radius: 5px;
     }
     pre code{
         background-color: unset;
+        border-radius: unset;
     }
 `
 const ButtonWrap = styled.div`
