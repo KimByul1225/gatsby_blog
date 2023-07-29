@@ -8,6 +8,7 @@ const config: GatsbyConfig = {
     title: `gatsby_blog`,
     siteUrl: `https://www.yourdomain.tld`,
   },
+
   graphqlTypegen: true,
   plugins: [
     {
