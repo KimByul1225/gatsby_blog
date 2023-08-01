@@ -18,14 +18,13 @@ function Haeder() {
     }, []);
 
 
-    const isActive = (path: string) => {
-        let urlPath = typeof window !== "undefined" ? window.location.pathname : ""
-        
-        const sliceLocation = urlPath.substring(1);
-        const substringLocaton = sliceLocation.split("/");
-        const locationPath = substringLocaton[0];
-        return path === locationPath ? "active" : ""
-    }
+    // const isActive = (path: string) => {
+    //     let urlPath = typeof window !== "undefined" ? window.location.pathname : ""
+    //     const sliceLocation = urlPath.substring(1);
+    //     const substringLocaton = sliceLocation.split("/");
+    //     const locationPath = substringLocaton[0];
+    //     return path === locationPath ? "active" : ""
+    // }
 
     return (
         <HeaderWrap
@@ -45,10 +44,14 @@ function Haeder() {
 
                     <Navi>
                         <ul>
-                            <li><Link to="/" className={isActive("")}>Home</Link></li>
+                            {/* <li><Link to="/" className={isActive("")}>Home</Link></li>
                             <li><Link to="/introduction" className={isActive("introduction")}>Introduction</Link></li>
                             <li><Link to="/project" className={isActive("project")}>Project</Link></li>
-                            <li><Link to="/blog" className={isActive("blog")}>Blog</Link></li>
+                            <li><Link to="/blog" className={isActive("blog")}>Blog</Link></li> */}
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/introduction">Introduction</Link></li>
+                            <li><Link to="/project">Project</Link></li>
+                            <li><Link to="/blog">Blog</Link></li>
                         </ul>
                     </Navi>
                 </SpaceBetween>
