@@ -158,7 +158,7 @@ export const Head = ()=> <Seo title="Blog상세"/>
 
 const Background = styled.div<IBackground>`
     width: 100%;
-    height: 500px;
+    height: 600px;
     background: url(${(props) => props.img}) center no-repeat;
     background-size: cover;
 `

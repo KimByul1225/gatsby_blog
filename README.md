@@ -4,7 +4,7 @@
 <br />
 <img width="106" src="./readme/logo.png" />
 <br />
-<a display="block" href="https://byulkim-blog.netlify.app" target="_blank">https://byulkim-blog.netlify.app</a>
+<a display="block" href="https://byulkim-blog.netlify.app">https://byulkim-blog.netlify.app</a>
 <br /><br />
 </div>
 <br />
