@@ -104,7 +104,6 @@ const ExperienceList = styled.div`
     &:first-child{
         border-top: 1px solid #e4e4e4;
     }
-
     h3{
         width: 30%;
         font-size: 28px;
@@ -134,12 +133,16 @@ const ExperienceList = styled.div`
         align-items: flex-start;
         h3{
             margin-bottom: 20px;
+            width: 100%;
         }
     }
 `
 
 const ExperienceDetail = styled.div`
     width: 70%;
+    @media screen and (max-width: 768px){
+        width: 100%;
+    }
 `
 
 const MdxWrap = styled(MDXProvider)`

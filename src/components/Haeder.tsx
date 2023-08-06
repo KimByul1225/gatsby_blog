@@ -102,7 +102,7 @@ const SpaceBetween = styled.div`
     align-items: center;
     justify-content: space-between;
     @media screen and (max-width: 768px){
-        flex-direction: column;
+        /* flex-direction: column; */
     }
 
 `
@@ -125,6 +125,10 @@ const Logo = styled(Link)`
     &:hover h1{
         animation: ${logoAnimation} .3s ease-out 3;
     }
+    @media screen and (max-width: 768px){
+        display: none;
+    }
+
 `
 
 const Navi = styled.nav`
@@ -158,7 +162,6 @@ const Navi = styled.nav`
         color: #ff4d15;
     }
     @media screen and (max-width: 768px){
-        margin-top: 40px;
         padding: 0 10px;
         width: 100%;
         ul{

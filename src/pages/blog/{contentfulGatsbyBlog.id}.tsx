@@ -341,6 +341,8 @@ const Viewer = styled.div`
         background-color: #f7f6f3;
         padding: 10px 20px;
         border-radius: 5px;
+        white-space: pre;
+        overflow-x: auto;
     }
     pre code{
         background-color: unset;
