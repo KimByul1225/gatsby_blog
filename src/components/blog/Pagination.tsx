@@ -17,6 +17,10 @@ interface IPagination{
     setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
+/**
+ * @description Blog Pagination을 위한 component 
+ */
+
 const Pagination = ( {total, limit, page, setPage} : IPagination) => {
     const numPages = Math.ceil(total / limit);
     const paginationgArr = new Array(numPages).fill(0); 

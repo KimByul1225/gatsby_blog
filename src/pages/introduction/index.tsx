@@ -9,8 +9,9 @@ import { styled } from "styled-components";
 import Row from "../../components/common/Row";
 import TagList from "../../components/common/TagList";
 
-
-
+/**
+ * @description introduction 페이지
+ */
 
 export default function introduction({data}: PageProps<Queries.ExperienceQuery>) {
     return (

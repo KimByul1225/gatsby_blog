@@ -1,6 +1,10 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
+/**
+ * @description 태그 리스트를 위한 component로 공통적으로 사용됨.
+ */
+
 export default function TagList({item}: {item: readonly (string | null)[] | null | undefined}) {
     return (
         <TagWrap>

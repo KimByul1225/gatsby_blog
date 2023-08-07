@@ -21,6 +21,10 @@ interface IProjectList {
     }
 }
 
+/**
+ * @description 프로젝트 리스트를 위한 component
+ */
+
 function ProjectDetail({item}: {item: (string | null)[]}) { 
     return(
         <ul>

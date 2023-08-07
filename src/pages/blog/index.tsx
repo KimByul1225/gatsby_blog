@@ -4,17 +4,18 @@ import Seo from '../../components/Seo';
 import { graphql, PageProps } from 'gatsby';
 import BlogList from '../../components/blog/BlogList';
 import Pagination from '../../components/blog/Pagination';
-
 import { styled, css } from 'styled-components';
 import iconSelect from "../../images/common/icon_select.png";
 import iconSearch from "../../images/common/icon_search.png";
 import Row from '../../components/common/Row';
 
-
 interface IInputWrap{
     keyword: string;
 }
 
+/**
+ * @description Blog리스트 페이지
+ */
 
 export default function blog({data}: PageProps<Queries.BlogsQuery>) {
     const {nodes} = data.allContentfulGatsbyBlog;

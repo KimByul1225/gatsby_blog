@@ -6,6 +6,9 @@ import iconNotion from "../images/common/icon_notion.svg";
 import iconLinkedIn from "../images/common/icon_linkedin.svg";
 import iconMail from "../images/common/icon_mail.svg";
 
+/**
+ * @description footer component
+ */
 
 function Footer() {
     return (

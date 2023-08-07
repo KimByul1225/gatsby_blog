@@ -10,6 +10,10 @@ interface IBackgroundBox {
   image: string;
 }
 
+/**
+ * @description 메인페이지
+ */
+
 export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
   return (
     <Layout>

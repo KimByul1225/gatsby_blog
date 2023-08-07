@@ -14,6 +14,9 @@ interface IBlogList {
     headerImage : { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData | null, readonly file: { readonly url: string | null } | null };
 }
 
+/**
+ * @description Blog게시글 리스트를 위한 component 
+ */
 
 function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offset: number}) {
     return (

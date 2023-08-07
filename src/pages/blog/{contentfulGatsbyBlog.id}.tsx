@@ -13,7 +13,7 @@ import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import Seo from "../../components/Seo";
 
 /**
- * @description Blog의 상세 내용을 보여주기 위한 components
+ * @description Blog의 상세 내용을 보여주기 위한 페이지
  */
 
 

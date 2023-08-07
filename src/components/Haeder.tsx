@@ -3,7 +3,9 @@ import { Link } from "gatsby";
 import styled, {keyframes} from 'styled-components';
 import logo from "../images/common/logo_symbol.png";
 
-
+/**
+ * @description header component
+ */
 
 function Haeder() {
     const [fixedHeder, setFixedHeder] = useState(false);

@@ -5,27 +5,27 @@ import errorBackGround from "../images/common/error_bg.png";
 import iconArrow from "../images/common/icon_error_arrow.png";
 
 /**
- * @description 에러 페이지를 위한 components
+ * @description 에러 페이지
  */
 
 const NotFoundPage = () => {
-  return (
-    <ErrorRow>
-        <ErrorContainer>
-            <BackgroundBox/>
-            <TextBox>
-                <h3>죄송합니다</h3>
-                <h4>원하시는 페이지를 찾을 수 없습니다.</h4>
-                <p>찾으려는 페이지의 주소 변경 혹은 삭제로 인해 페이지를 찾을 수 없습니다.</p>
-                <p>입력하신 주소가 정확한지 다시 한 번 확인해 주시기 바랍니다.</p>
-                <Link  to="/">
-                    홈으로 이동
-                </Link>
-            </TextBox>
+    return (
+        <ErrorRow>
+            <ErrorContainer>
+                <BackgroundBox/>
+                <TextBox>
+                    <h3>죄송합니다</h3>
+                    <h4>원하시는 페이지를 찾을 수 없습니다.</h4>
+                    <p>찾으려는 페이지의 주소 변경 혹은 삭제로 인해 페이지를 찾을 수 없습니다.</p>
+                    <p>입력하신 주소가 정확한지 다시 한 번 확인해 주시기 바랍니다.</p>
+                    <Link  to="/">
+                        홈으로 이동
+                    </Link>
+                </TextBox>
 
-        </ErrorContainer>
-    </ErrorRow>
-  )
+            </ErrorContainer>
+        </ErrorRow>
+    )
 }
 
 export default NotFoundPage

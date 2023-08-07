@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 
-const COMMENTS_ID = 'comments-container';
+/**
+ * @description 댓글기능을 위한 component
+ */
 
+const COMMENTS_ID = 'comments-container';
 const Comments = () => {
     useEffect(() => {
         const script = document.createElement('script');

@@ -1,6 +1,10 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
+/**
+ * @description 가로 contents 영역을 제한하기 위한 component 
+ */
+
 const Row = ({children}:{children: ReactNode}) => {
     return (
         <Wrap>

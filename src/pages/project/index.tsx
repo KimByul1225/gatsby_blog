@@ -5,16 +5,16 @@ import { graphql, PageProps } from 'gatsby';
 import ProjectList from '../../components/project/ProjectList';
 import Row from '../../components/common/Row';
 import { styled } from 'styled-components';
-
 import iconSelect from "../../images/common/icon_select.png";
 
-
+/**
+ * @description 프로젝트 페이지
+ */
 
 
 export default function project({data}: PageProps<Queries.ProjectQuery>) {
     const {nodes} = data.allMdx;
     const [listSort, setListSort] = useState("desc");
-
     const sorting = (el: any) => {
         if(listSort === "desc"){
             return el;
