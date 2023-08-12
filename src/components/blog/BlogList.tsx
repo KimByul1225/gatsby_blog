@@ -14,6 +14,10 @@ interface IBlogList {
     headerImage : { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData | null, readonly file: { readonly url: string | null } | null };
 }
 
+interface ICategoryColor {
+    categoryColor: string;
+}
+
 /**
  * @description Blog게시글 리스트를 위한 component 
  */
@@ -24,12 +28,39 @@ function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offs
             {
                 data.length != 0 ? data.slice(offset, offset + limit).map((item, index) => {
                     const image = getImage(item?.headerImage?.gatsbyImageData!);
+                    const category = item?.category;
+                    let color;
+                    switch(category){
+                        case 'React' :
+                            color = "#61dafb";
+                            break;
+                        case 'Javascript' :
+                            color = "#e9ca34";
+                            break;
+                        case 'Gatsby' :
+                            color = "#663399";
+                            break;
+                        case 'styled-components' :
+                            color = "#d86faf";
+                            break;
+                        case 'NEXT JS' :
+                            color = "#8b8a8a";
+                            break;   
+                        case 'CSS' :
+                            color = "#0170ba";
+                            break;
+                        default: 
+                            color = "#ff4d15";
+                    }
+
                     return(
                         <List key={index}>
                             <Link
                                 to={`/blog/${item.id}`}
                             >   
-                                <DeatailWrap>       
+                                <DeatailWrap
+                                    categoryColor = {color}
+                                >       
                                     <h5>{item?.category}</h5>
                                     <h3 className="ellipsis">{item?.title}</h3>
                                     <h4 className="ellipsis">{item?.description}</h4>
@@ -94,13 +125,13 @@ const ListNone = styled.li`
     font-size: 18px;
 `
 
-const DeatailWrap = styled.div`
+const DeatailWrap = styled.div<ICategoryColor>`
     width: calc(100% - 200px);
     padding-right: 10px;
     h5{
-        color: #ff4d15;
+        color: ${(props) => props.categoryColor || "#ff4d15"}; 
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 30px;
     }
     h3{
