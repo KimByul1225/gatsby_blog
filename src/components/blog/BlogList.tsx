@@ -52,7 +52,6 @@ function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offs
                         default: 
                             color = "#ff4d15";
                     }
-
                     return(
                         <List key={index}>
                             <Link

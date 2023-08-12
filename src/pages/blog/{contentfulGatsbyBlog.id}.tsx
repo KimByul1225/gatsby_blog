@@ -16,6 +16,9 @@ import Seo from "../../components/Seo";
  * @description Blog의 상세 내용을 보여주기 위한 페이지
  */
 
+interface ICategoryColor {
+    categoryColor: string;
+}
 
 interface IBackground {
     img: string;
@@ -96,18 +99,44 @@ const options = {
 export default function BlogDetail({data}: {data: IBlogList}) {
     const { contentfulGatsbyBlog } = data;
     const urlPath = `https:${contentfulGatsbyBlog.headerImage?.file?.url}`;
+
+    const category = contentfulGatsbyBlog.category;
+    let color;
+    switch(category){
+        case 'React' :
+            color = "#61dafb";
+            break;
+        case 'Javascript' :
+            color = "#e9ca34";
+            break;
+        case 'Gatsby' :
+            color = "#663399";
+            break;
+        case 'styled-components' :
+            color = "#d86faf";
+            break;
+        case 'NEXT JS' :
+            color = "#8b8a8a";
+            break;   
+        case 'CSS' :
+            color = "#0170ba";
+            break;
+        default: 
+            color = "#ff4d15";
+    }
     return (
         <Layout>
             <Background
                 img={urlPath}
             />
             <Row>
-                <DeatailWrap>
+                <DeatailWrap
+                    categoryColor = {color}
+                >
                     <h5>{contentfulGatsbyBlog.category}</h5>
                     <h3>{contentfulGatsbyBlog.title}</h3>
                     <h4>{contentfulGatsbyBlog.description}</h4>
                     <p>{moment(contentfulGatsbyBlog.date).format('YYYY.MM.DD HH:mm')}</p>
-                    
                 </DeatailWrap>
                 <Viewer>{renderRichText(contentfulGatsbyBlog.detail, options)}</Viewer>
                 <ButtonWrap>
@@ -164,11 +193,11 @@ const Background = styled.div<IBackground>`
 `
 
 
-const DeatailWrap = styled.div`
+const DeatailWrap = styled.div<ICategoryColor>`
     padding-bottom: 30px;
     border-bottom: 1px solid #e4e4e4;
     h5{
-        color: #ff4d15;
+        color: ${(props) => props.categoryColor || "#ff4d15"}; 
         font-size: 18px;
         font-weight: 600;
         margin-bottom: 20px;
