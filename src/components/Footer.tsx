@@ -31,7 +31,7 @@ function Footer() {
                             </span>
                         </a>
                         <a
-                            href="https://github.com/KimByul1225"
+                            href="https://byulkim.notion.site/Study-c54ee2e3769d48f3ba6dd0bd8cccad13?pvs=4"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
