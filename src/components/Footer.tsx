@@ -41,7 +41,7 @@ function Footer() {
                                 notion 아이콘
                             </span>
                         </a>
-                        <a
+                        {/* <a
                             href="https://github.com/KimByul1225"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -51,7 +51,7 @@ function Footer() {
                             >
                                 linked in 아이콘
                             </span>
-                        </a>
+                        </a> */}
                         <a 
                             href="mailto:byulkim1225@gmail.com" 
                             target="_blank"
@@ -112,11 +112,11 @@ const IconWrap = styled.div`
         background: url(${iconNotion}) center no-repeat;
         background-size: contain;
     }
-    a:nth-child(3){
+    /* a:nth-child(3){
         background: url(${iconLinkedIn}) center no-repeat;
         background-size: contain;
 
-    }
+    } */
     a:last-child{
         background: url(${iconMail}) center no-repeat;
         background-size: contain;

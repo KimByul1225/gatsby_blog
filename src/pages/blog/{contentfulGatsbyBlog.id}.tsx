@@ -136,7 +136,7 @@ export default function BlogDetail({data}: {data: IBlogList}) {
                     <h5>{contentfulGatsbyBlog.category}</h5>
                     <h3>{contentfulGatsbyBlog.title}</h3>
                     <h4>{contentfulGatsbyBlog.description}</h4>
-                    <p>{moment(contentfulGatsbyBlog.date).format('YYYY.MM.DD HH:mm')}</p>
+                    <time suppressHydrationWarning>{moment(contentfulGatsbyBlog.date).format('YYYY.MM.DD HH:mm')}</time>
                 </DeatailWrap>
                 <Viewer>{renderRichText(contentfulGatsbyBlog.detail, options)}</Viewer>
                 <ButtonWrap>
@@ -210,7 +210,7 @@ const DeatailWrap = styled.div<ICategoryColor>`
     h4{
         margin-bottom: 50px;
     }
-    p{
+    time{
         color: #818181;
         font-weight: 300;
     }

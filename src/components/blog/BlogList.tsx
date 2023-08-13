@@ -63,7 +63,7 @@ function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offs
                                     <h5>{item?.category}</h5>
                                     <h3 className="ellipsis">{item?.title}</h3>
                                     <h4 className="ellipsis">{item?.description}</h4>
-                                    <p>{moment(item?.date).format('YYYY.MM.DD HH:mm')}</p>
+                                    <time suppressHydrationWarning>{moment(item?.date).format('YYYY.MM.DD HH:mm')}</time>
                                 </DeatailWrap>
 
                                 <StyledGatsbyImage 
@@ -141,7 +141,7 @@ const DeatailWrap = styled.div<ICategoryColor>`
     h4{
         margin-bottom: 20px;
     }
-    p{
+    time{
         color: #818181;
         font-weight: 300;
     }
