@@ -1,6 +1,6 @@
 <div align="center">
 
-# Web Sample
+# Gatsby Blog
 <br />
 <img width="106" src="./readme/logo.png" />
 <br />
