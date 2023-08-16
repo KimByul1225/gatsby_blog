@@ -24,16 +24,7 @@ export default function blog({data}: PageProps<Queries.BlogsQuery>) {
     const limit = 10;
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
-
-    console.log("offset", offset);
-
-    const intArray = [];
-    // for (index = 0; index < 5; index++) {
-    //     intArray.push(5);
-    // }
-
-
-
+    
     // 방법1
     // const filtering = (el: any) => {
     //     return el.filter((item: { frontmatter: { title: string; description: string; category: string; }; }) => item.frontmatter?.title?.toLowerCase().includes(keyword.toLowerCase()) || item.frontmatter?.description?.toLowerCase().includes(keyword.toLowerCase()) || item.frontmatter?.category?.toLowerCase().includes(keyword.toLowerCase()) )
@@ -47,7 +38,12 @@ export default function blog({data}: PageProps<Queries.BlogsQuery>) {
         }else{
             return el.filter((item: any) => keys.some(key => item[key].toLowerCase().includes(keyword.toLowerCase()))).reverse();
         }
-    }
+    };
+
+    const inputHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setKeyword(e.target.value)
+        setPage(1);
+    };
     
     return (
         <Layout>
@@ -68,7 +64,7 @@ export default function blog({data}: PageProps<Queries.BlogsQuery>) {
                             type="search"
                             aria-label="Search"
                             placeholder=""
-                            onChange={(e) => setKeyword(e.target.value)}
+                            onChange={inputHandler}
                         />
                     </div>
                 </InputWrap>

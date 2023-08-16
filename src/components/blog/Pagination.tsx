@@ -22,16 +22,25 @@ interface IPagination{
  */
 
 const Pagination = ( {total, limit, page, setPage} : IPagination) => {
-    const numPages = Math.ceil(total / limit);
-
+     //pagination 갯수 계산. 5개 이상이면 5리턴, 5개 이하면 전체게시물 갯수 / 리밋수 만큼만 리턴
+    const numPages = Math.ceil(total / limit) > 5 ? 5 : Math.ceil(total / limit);
+    
+    //마지막 페이지 계산.
     const lastPage = Math.ceil(total / limit);
 
-    const paginationgArr = new Array(numPages).fill(0); 
-    console.log("paginationgArr", paginationgArr);
+    //pagination 마지막 버튼 처리를 위한 조건. 5개보다 적으면 numPages 갯수만큼 보여주고 5개보다 많을 때 lastPage/numPages(5개보다 많은 조건이라 무조건 5임.)의 나머지 값만큼 갯수 생성
+    const pagingLastNum = lastPage > 5 ? lastPage % numPages : numPages;
 
-    // const objArray = Array(5).fill().map((item) => ({name:'홍길동'}));
-    // console.log("objArray", objArray);
+    //pagination 버튼의 첫번째 숫자 계산. 1~5까지는 1, 6~10까지 6, ...
+    const pagingFirstNum = (page - 1) - ((page - 1) % 5) + 1;
+    
 
+    const paginationgArr = new Array(
+        (page - 1) / numPages !== (lastPage - 1) / numPages ? numPages : pagingLastNum
+        ).fill(null); 
+
+    
+    
     return (
         <>
             <PaginationWrap>
@@ -49,8 +58,24 @@ const Pagination = ( {total, limit, page, setPage} : IPagination) => {
                         </PrevButton>
                     </>
                 }
-                
                 <NumberBox>
+                    {
+                        paginationgArr.map((_, index)=>{
+                            return(
+                                <button
+                                    key={index + 1}
+                                    onClick={() => setPage(pagingFirstNum + index)}
+                                    className={
+                                        pagingFirstNum + index === page ? "on" : undefined
+                                    }
+                                >
+                                    {pagingFirstNum + index}
+                                </button>
+                            )
+                        })
+                    }
+                </NumberBox>
+                {/* <NumberBox>
                     {
                         paginationgArr.map((_, index)=>{
                             return(
@@ -66,7 +91,7 @@ const Pagination = ( {total, limit, page, setPage} : IPagination) => {
                             )
                         })
                     }
-                </NumberBox>
+                </NumberBox> */}
                 {
                     paginationgArr.length > 0 && <>
                         <NextButton
