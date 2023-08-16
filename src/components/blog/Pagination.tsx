@@ -23,7 +23,14 @@ interface IPagination{
 
 const Pagination = ( {total, limit, page, setPage} : IPagination) => {
     const numPages = Math.ceil(total / limit);
+
+    const lastPage = Math.ceil(total / limit);
+
     const paginationgArr = new Array(numPages).fill(0); 
+    console.log("paginationgArr", paginationgArr);
+
+    // const objArray = Array(5).fill().map((item) => ({name:'홍길동'}));
+    // console.log("objArray", objArray);
 
     return (
         <>
@@ -45,7 +52,7 @@ const Pagination = ( {total, limit, page, setPage} : IPagination) => {
                 
                 <NumberBox>
                     {
-                        paginationgArr.map((item, index)=>{
+                        paginationgArr.map((_, index)=>{
                             return(
                                 <button
                                     key={index + 1}
@@ -63,12 +70,12 @@ const Pagination = ( {total, limit, page, setPage} : IPagination) => {
                 {
                     paginationgArr.length > 0 && <>
                         <NextButton
-                            onClick={() => setPage(page + 1)} disabled={page === numPages}
+                            onClick={() => setPage(page + 1)} disabled={page === lastPage}
                         >
                             <span className="ir_so">다음 페이지로 이동</span>
                         </NextButton>
                         <LastButton
-                            onClick={() => setPage(numPages)} disabled={page === numPages}
+                            onClick={() => setPage(lastPage)} disabled={page === lastPage}
                         >
                             <span className="ir_so">마지막 페이지로 이동</span>
                         </LastButton>

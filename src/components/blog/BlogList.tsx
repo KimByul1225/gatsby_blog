@@ -71,7 +71,6 @@ function BlogList({data, limit, offset}: {data: IBlogList[], limit: number, offs
                                     alt={item.title!}
                                 />
                             </Link>
-                            
                         </List>
                     )
                 })
