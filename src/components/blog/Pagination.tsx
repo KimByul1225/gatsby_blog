@@ -34,12 +34,13 @@ const Pagination = ( {total, limit, page, setPage} : IPagination) => {
     //pagination 버튼의 첫번째 숫자 계산. 1~5까지는 1, 6~10까지 6, ...
     const pagingFirstNum = (page - 1) - ((page - 1) % 5) + 1;
     
-
     const paginationgArr = new Array(
-        (page - 1) / numPages !== (lastPage - 1) / numPages ? numPages : pagingLastNum
+        page <= (lastPage - pagingLastNum) ? numPages : pagingLastNum
         ).fill(null); 
 
-    
+
+
+
     
     return (
         <>
