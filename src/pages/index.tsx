@@ -28,11 +28,18 @@ export default function IndexPage({data}: PageProps<Queries.ExperienceQuery>) {
             <p>
               Anyang, Republic of Korea
             </p>
-            <a 
+            {/* <a 
                 href="mailto:byulkim1225@gmail.com" 
                 target="_blank"
                 rel="noopener noreferrer"
-            >byulkim1225@gmail.com</a>
+            >byulkim1225@gmail.com</a> */}
+            <a
+                href="https://github.com/KimByul1225"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+              https://github.com/KimByul1225
+            </a>
             <p>
               본 블로그는 <a 
                 href="https://www.gatsbyjs.com/" 

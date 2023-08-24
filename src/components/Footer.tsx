@@ -52,7 +52,7 @@ function Footer() {
                                 linked in 아이콘
                             </span>
                         </a> */}
-                        <a 
+                        {/* <a 
                             href="mailto:byulkim1225@gmail.com" 
                             target="_blank"
                             rel="noopener noreferrer"
@@ -62,7 +62,7 @@ function Footer() {
                             >
                                 e-mail 아이콘
                             </span>
-                        </a>
+                        </a> */}
                         {/* <a href="https://www.naver.com" target="_blank" rel="noopener noreferrer"><span className='ir_so'>Facebook</span></a> */}
                         
                     </IconWrap>
@@ -117,11 +117,11 @@ const IconWrap = styled.div`
         background-size: contain;
 
     } */
-    a:last-child{
+    /* a:last-child{
         background: url(${iconMail}) center no-repeat;
         background-size: contain;
         margin-right: 0px;
-    }
+    } */
     a:hover{
         opacity: 0.7;
         transition: .3s ease;
