@@ -22,7 +22,7 @@ export default function introduction({data}: PageProps<Queries.ExperienceQuery>)
             </SectionTitle>
             <ExperienceWrap>
             {
-                data.allMdx?.nodes.map((item, index)=>(
+                data.allMdx?.nodes.slice(0).reverse().map((item, index)=>(
                 <ExperienceList key={index}>
                     <h3>
                         {item.frontmatter?.companyName}
@@ -31,7 +31,8 @@ export default function introduction({data}: PageProps<Queries.ExperienceQuery>)
                         <h4>{item.frontmatter?.task}</h4>
                         <h5>{item.frontmatter?.team} / {item.frontmatter?.position}</h5>
                         <p>
-                        {item.frontmatter?.startDate} ~ {item.frontmatter?.endDate}<span>{item.frontmatter?.period}</span>
+                        {item.frontmatter?.startDate} ~ {item.frontmatter?.endDate && item.frontmatter?.endDate}
+                        {/* <span>{item.frontmatter?.period}</span> */}
                         </p>
                         <TagList item={item.frontmatter?.work}/>
                     </ExperienceDetail>                
