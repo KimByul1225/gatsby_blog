@@ -48,12 +48,12 @@ export default function introduction({data}: PageProps<Queries.ExperienceQuery>)
             <Stack/>
             </MdxWrap>
             
-            <SectionTitle>
+            {/* <SectionTitle>
             Now Studying ✍🏻
             </SectionTitle>
             <MdxWrap as="div">
             <NowStudying/>
-            </MdxWrap>
+            </MdxWrap> */}
         </Row>      
         </Layout>
     )
